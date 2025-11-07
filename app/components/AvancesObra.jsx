@@ -1,16 +1,25 @@
 "use client";
 
-import { HiOutlineBuildingOffice2, HiOutlineClock } from "react-icons/hi2";
 import { motion } from "framer-motion";
+import { HiOutlineBuildingOffice2, HiOutlineClock } from "react-icons/hi2";
 
 export default function AvancesObra() {
   return (
-    <section
+    <motion.section
       id="avances"
+      initial={{ opacity: 0, y: 60 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      viewport={{ once: true, amount: 0.2 }}
       className="w-full bg-white py-20 px-6 md:px-12 lg:px-24 text-center"
     >
-      {/* === ENCABEZADO === */}
-      <div className="max-w-3xl mx-auto mb-10">
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        viewport={{ once: true, amount: 0.3 }}
+        className="max-w-3xl mx-auto mb-10"
+      >
         <p className="inline-block px-4 py-1 text-sm rounded-full bg-[#E6F6EE] text-[#00A651] font-semibold mb-4">
           🏗️ AVANCES DE OBRA
         </p>
@@ -22,20 +31,26 @@ export default function AvancesObra() {
           Conoce el progreso del proyecto y mantente al tanto del desarrollo de
           tu futuro hogar.
         </p>
-      </div>
+      </motion.div>
 
-      {/* === CONTENIDO (placeholder) === */}
       <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7 }}
-        viewport={{ once: true }}
+        initial={{ opacity: 0, scale: 0.9, rotateX: -10 }}
+        whileInView={{ opacity: 1, scale: 1, rotateX: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        viewport={{ once: true, amount: 0.2 }}
         className="max-w-xl mx-auto bg-[#F5F7FA] rounded-2xl p-10 flex flex-col items-center justify-center shadow-sm"
       >
-        <div className="flex items-center justify-center mb-4 text-[#004A99]">
+        <motion.div
+          initial={{ opacity: 0, rotate: -10 }}
+          whileInView={{ opacity: 1, rotate: 0 }}
+          transition={{ duration: 0.7, ease: "easeOut", delay: 0.1 }}
+          viewport={{ once: true }}
+          className="flex items-center justify-center mb-4 text-[#004A99]"
+        >
           <HiOutlineBuildingOffice2 className="text-5xl mr-2" />
           <HiOutlineClock className="text-4xl text-[#00A651]" />
-        </div>
+        </motion.div>
+
         <h3 className="text-2xl font-bold text-[#004A99] mb-2">
           ¡Pronto iniciaremos obras!
         </h3>
@@ -47,6 +62,6 @@ export default function AvancesObra() {
           . Muy pronto compartiremos los avances y actualizaciones del proyecto.
         </p>
       </motion.div>
-    </section>
+    </motion.section>
   );
 }

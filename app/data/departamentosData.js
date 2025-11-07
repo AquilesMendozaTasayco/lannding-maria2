@@ -1,18 +1,17 @@
-// === CATEGORÍAS (cada plano único o grupo del brochure) ===
 export const categorias = [
   {
     id: "familiar-127",
     nombre: "Diseño Familiar A (Nivel 3)",
     resumen: "3 dormitorios • 3 baños",
     areaRango: "≈ 127 m²",
-    imagenes: ["/planos/plano-127-301.png"], // una sola imagen
+    imagenes: ["/planos/plano-127-301.png"], 
   },
   {
     id: "familiar-110",
     nombre: "Diseño Familiar B (Niveles 4–6)",
     resumen: "3 dormitorios • 3 baños",
     areaRango: "≈ 110 m²",
-    imagenes: ["/planos/plano-110-401.png"], // una sola imagen
+    imagenes: ["/planos/plano-110-401.png"],
   },
   {
     id: "familiar-100",

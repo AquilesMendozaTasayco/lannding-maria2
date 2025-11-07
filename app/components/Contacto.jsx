@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Swal from "sweetalert2";
+import { motion } from "framer-motion";
 import { HiPhone, HiMapPin, HiEnvelope } from "react-icons/hi2";
 import { FaFacebookF } from "react-icons/fa";
 
@@ -12,17 +13,13 @@ export default function Contacto() {
     telefono: "",
     mensaje: "",
   });
-
   const [loading, setLoading] = useState(false);
 
-  const handleChange = (e) => {
+  const handleChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // Validación rápida
     if (!formData.nombre || !formData.correo || !formData.mensaje) {
       Swal.fire({
         icon: "warning",
@@ -32,16 +29,13 @@ export default function Contacto() {
       });
       return;
     }
-
     try {
       setLoading(true);
-
       const res = await fetch("/api/sendEmail", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
-
       if (res.ok) {
         Swal.fire({
           icon: "success",
@@ -59,7 +53,7 @@ export default function Contacto() {
           confirmButtonColor: "#004A99",
         });
       }
-    } catch (error) {
+    } catch {
       Swal.fire({
         icon: "error",
         title: "Error inesperado",
@@ -72,14 +66,27 @@ export default function Contacto() {
   };
 
   return (
-    <section
+    <motion.section
       id="contacto"
+      initial={{ opacity: 0, y: 60 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      viewport={{ once: true, amount: 0.3 }}
       className="w-full bg-white py-20 px-6 md:px-12 lg:px-24"
     >
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        {/* === IZQUIERDA: FORMULARIO === */}
-        <form
+      <motion.div
+        initial={{ opacity: 0, scale: 0.97 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.7, ease: "easeOut" }}
+        viewport={{ once: true, amount: 0.3 }}
+        className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
+      >
+        <motion.form
           onSubmit={handleSubmit}
+          initial={{ opacity: 0, x: -50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+          viewport={{ once: true, amount: 0.3 }}
           className="bg-[#F9FAFB] p-8 rounded-2xl shadow-lg space-y-5 border border-gray-100"
         >
           <h3 className="text-2xl font-bold text-[#004A99]">
@@ -125,7 +132,9 @@ export default function Contacto() {
             type="submit"
             disabled={loading}
             className={`${
-              loading ? "bg-[#00A651]/70 cursor-not-allowed" : "bg-[#004A99] hover:bg-[#003b7d]"
+              loading
+                ? "bg-[#00A651]/70 cursor-not-allowed"
+                : "bg-[#004A99] hover:bg-[#003b7d]"
             } text-white font-semibold py-3 px-6 rounded-md w-full transition-all duration-300 flex items-center justify-center gap-2`}
           >
             <HiEnvelope className="text-lg" />
@@ -135,10 +144,15 @@ export default function Contacto() {
           <p className="text-xs text-gray-500 text-center">
             Tus datos están protegidos y no serán compartidos con terceros.
           </p>
-        </form>
+        </motion.form>
 
-        {/* === DERECHA: INFORMACIÓN === */}
-        <div className="text-left space-y-6">
+        <motion.div
+          initial={{ opacity: 0, x: 50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+          viewport={{ once: true, amount: 0.3 }}
+          className="text-left space-y-6"
+        >
           <div>
             <h2 className="text-3xl md:text-4xl font-extrabold text-[#004A99] mb-3">
               Hablemos sobre tu{" "}
@@ -162,20 +176,20 @@ export default function Contacto() {
             </p>
             <p className="flex items-center gap-3 text-gray-700">
               <HiPhone className="text-[#00A651] text-xl" />
-              +51 987 654 321
+              +51  956 223 460
             </p>
             <p className="flex items-center gap-3 text-gray-700">
               <FaFacebookF className="text-[#00A651] text-lg" />
-              Roden Constructores
+              Roden - Constructores
             </p>
           </div>
 
           <p className="text-gray-600 text-sm max-w-md pt-2">
-            Escríbenos para coordinar una visita al proyecto María Auxiliadora II o
-            para conocer nuestras promociones de preventa exclusivas.
+            Escríbenos para coordinar una visita al proyecto María Auxiliadora II
+            o para conocer nuestras promociones de preventa exclusivas.
           </p>
-        </div>
-      </div>
-    </section>
+        </motion.div>
+      </motion.div>
+    </motion.section>
   );
 }

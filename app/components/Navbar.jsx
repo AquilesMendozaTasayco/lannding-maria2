@@ -9,11 +9,9 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("inicio");
 
-  // Cambiar color al hacer scroll y detectar sección activa
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 40);
-
+      setScrolled(window.scrollY > 100);
       const sections = document.querySelectorAll("section[id]");
       let current = "inicio";
       sections.forEach((section) => {
@@ -30,8 +28,8 @@ export default function Navbar() {
   const navLinks = [
     { id: "inicio", label: "Inicio" },
     { id: "proyecto", label: "Proyecto" },
-    { id: "caracteristicas", label: "Caracteristicas" },
-    { id: "galeria", label: "Galeria" },
+    { id: "caracteristicas", label: "Características" },
+    { id: "galeria", label: "Galería" },
     { id: "departamentos", label: "Departamentos" },
     { id: "avances", label: "Avances" },
     { id: "contacto", label: "Contacto" },
@@ -39,14 +37,14 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-        scrolled || menuOpen
-          ? "bg-[#004A99] shadow-md backdrop-blur-sm"
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
+        scrolled
+          ? "bg-[#004A99]/95 shadow-md backdrop-blur-md"
           : "bg-transparent"
       }`}
     >
       <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
-        {/* LOGO */}
+        {/* Logo */}
         <a href="#inicio" className="flex items-center gap-2">
           <Image
             src="/logo-maria-aux.png"
@@ -58,27 +56,33 @@ export default function Navbar() {
           />
         </a>
 
-        {/* NAV LINKS - Escritorio */}
-        <nav className="hidden md:flex gap-8 font-medium text-white">
+        {/* Navegación Desktop */}
+        <nav className="hidden md:flex gap-8 font-medium">
           {navLinks.map((link) => (
             <a
               key={link.id}
               href={`#${link.id}`}
-              className={`relative group transition-colors duration-200 ${
-                activeSection === link.id ? "text-[#00A651]" : "text-white"
+              className={`relative group transition-all duration-200 ${
+                activeSection === link.id
+                  ? "text-[#00A651]"
+                  : scrolled
+                  ? "text-white hover:text-[#00A651]"
+                  : "text-white hover:text-[#00A651]"
               }`}
             >
               {link.label}
               <span
-                className={`absolute left-0 -bottom-1 h-[2px] w-0 bg-[#00A651] transition-all duration-300 group-hover:w-full ${
-                  activeSection === link.id ? "w-full" : "w-0"
+                className={`absolute left-0 -bottom-1 h-[2px] bg-[#00A651] transition-all duration-300 ${
+                  activeSection === link.id
+                    ? "w-full"
+                    : "w-0 group-hover:w-full"
                 }`}
               ></span>
             </a>
           ))}
         </nav>
 
-        {/* BOTÓN MENU MÓVIL */}
+        {/* Botón móvil */}
         <button
           onClick={() => setMenuOpen(!menuOpen)}
           className="md:hidden text-white focus:outline-none"
@@ -87,9 +91,9 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* MENÚ MÓVIL estilo dropdown (no pantalla completa) */}
+      {/* Menú móvil */}
       <div
-        className={`md:hidden absolute top-full left-0 w-full bg-white/95 backdrop-blur-sm text-[#004A99] shadow-lg transition-all duration-300 origin-top ${
+        className={`md:hidden absolute top-full left-0 w-full bg-white/95 text-[#004A99] shadow-lg transition-all duration-300 origin-top ${
           menuOpen
             ? "opacity-100 translate-y-0 pointer-events-auto"
             : "opacity-0 -translate-y-3 pointer-events-none"
@@ -101,7 +105,7 @@ export default function Navbar() {
               key={link.id}
               href={`#${link.id}`}
               onClick={() => setMenuOpen(false)}
-              className={`relative transition-colors duration-200 ${
+              className={`transition-colors duration-200 ${
                 activeSection === link.id
                   ? "text-[#00A651]"
                   : "hover:text-[#00A651]"

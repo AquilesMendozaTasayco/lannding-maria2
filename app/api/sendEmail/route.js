@@ -11,7 +11,6 @@ export async function POST(req) {
       );
     }
 
-    // === Transporter (usa tus credenciales SMTP existentes) ===
     const transporter = nodemailer.createTransport({
       host: process.env.SMTP_HOST,
       port: Number(process.env.SMTP_PORT),
@@ -22,7 +21,6 @@ export async function POST(req) {
       },
     });
 
-    // === Contenido del correo ===
     const htmlContent = `
       <div style="font-family: Arial, Helvetica, sans-serif; color: #222; background: #fff; padding: 40px; line-height: 1.6;">
         <p style="margin-bottom: 20px;">Estimado equipo de <strong>Residencial María Auxiliadora II</strong>,</p>
@@ -51,11 +49,9 @@ export async function POST(req) {
       </div>
     `;
 
-    // === Envío del correo ===
     await transporter.sendMail({
       from: `"Formulario MA2" <${process.env.SMTP_FROM}>`,
-      to: ["aquilesfabianmendozatasayco@gmail.com"],
-    //   to: ["ventas@roden.pe", "psolar@emocion.pe"],
+      to: ["ventas@roden.pe", "psolar@emocion.pe"],
       replyTo: correo,
       subject: `Nuevo mensaje desde la Landing María Auxiliadora II - ${nombre}`,
       html: htmlContent,

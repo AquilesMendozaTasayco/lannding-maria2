@@ -1,53 +1,25 @@
-import {
-  HiOutlineHomeModern,
-  HiOutlineSparkles,
-  HiOutlineBuildingOffice2,
-  HiOutlineMapPin,
-  HiOutlineSun,
-  HiOutlineTruck,
-} from "react-icons/hi2";
+"use client";
+
+import { motion } from "framer-motion";
+import { featuresData } from "../data/featuresData";
 
 export default function Feature() {
-  const features = [
-    {
-      icon: <HiOutlineHomeModern className="text-[#00A651] text-3xl" />,
-      title: "Diseño moderno y funcional",
-      desc: "Departamentos amplios con distribución inteligente y acabados de primera.",
-    },
-    {
-      icon: <HiOutlineSparkles className="text-[#00A651] text-3xl" />,
-      title: "Cocina equipada",
-      desc: "Ambientes modernos con equipamiento completo y detalles elegantes.",
-    },
-    {
-      icon: <HiOutlineBuildingOffice2 className="text-[#00A651] text-3xl" />,
-      title: "Cocheras independientes",
-      desc: "Espacios cómodos y seguros con acceso directo al edificio.",
-    },
-    {
-      icon: <HiOutlineSun className="text-[#00A651] text-3xl" />,
-      title: "Iluminación natural",
-      desc: "Cada espacio está diseñado para aprovechar al máximo la luz del día.",
-    },
-    {
-      icon: <HiOutlineMapPin className="text-[#00A651] text-3xl" />,
-      title: "Frente a parque",
-      desc: "Disfruta de la tranquilidad de vivir frente a un entorno verde y natural.",
-    },
-    {
-      icon: <HiOutlineTruck className="text-[#00A651] text-3xl" />,
-      title: "Acceso estratégico",
-      desc: "Cerca de colegios, bancos, centros comerciales y avenidas principales.",
-    },
-  ];
-
   return (
-    <section
+    <motion.section
       id="caracteristicas"
+      initial={{ opacity: 0, scale: 0.95 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.7, ease: "easeOut" }}
+      viewport={{ once: true, amount: 0.2 }}
       className="w-full bg-[#F5F7FA] py-20 px-6 md:px-12 lg:px-24 text-center"
     >
-      {/* === Encabezado === */}
-      <div className="max-w-3xl mx-auto mb-14">
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
+        viewport={{ once: true, amount: 0.3 }}
+        className="max-w-3xl mx-auto mb-14"
+      >
         <p className="inline-block px-4 py-1 text-sm rounded-full bg-[#E6F6EE] text-[#00A651] font-semibold mb-4">
           ✳ CARACTERÍSTICAS
         </p>
@@ -60,13 +32,20 @@ export default function Feature() {
           ambientes funcionales, iluminación natural y acabados modernos, en un
           entorno pensado para tu familia.
         </p>
-      </div>
+      </motion.div>
 
-      {/* === Grid de características === */}
       <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
-        {features.map((item, index) => (
-          <div
-            key={index}
+        {featuresData.map((item, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, y: 40, rotateX: -15 }}
+            whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
+            transition={{
+              duration: 0.5,
+              ease: "easeOut",
+              delay: i * 0.1,
+            }}
+            viewport={{ once: true, amount: 0.2 }}
             className="bg-white border border-gray-200 rounded-2xl p-8 flex flex-col items-center text-center shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
           >
             <div className="mb-4">{item.icon}</div>
@@ -74,9 +53,9 @@ export default function Feature() {
               {item.title}
             </h3>
             <p className="text-gray-600 text-sm">{item.desc}</p>
-          </div>
+          </motion.div>
         ))}
       </div>
-    </section>
+    </motion.section>
   );
 }

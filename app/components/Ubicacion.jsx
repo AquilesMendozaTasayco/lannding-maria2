@@ -1,9 +1,25 @@
+"use client";
+
+import { motion } from "framer-motion";
+
 export default function Ubicacion() {
   return (
-    <section id="ubicacion" className="w-full bg-[#004A99] text-white">
+    <motion.section
+      id="ubicacion"
+      initial={{ opacity: 0, y: 70 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      viewport={{ once: true, amount: 0.2 }}
+      className="w-full bg-[#004A99] text-white"
+    >
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2">
-        {/* === LADO IZQUIERDO (TEXTO) === */}
-        <div className="flex flex-col justify-center px-8 md:px-12 py-14 space-y-4">
+        <motion.div
+          initial={{ opacity: 0, x: -50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+          viewport={{ once: true, amount: 0.3 }}
+          className="flex flex-col justify-center px-8 md:px-12 py-14 space-y-4"
+        >
           <h2 className="text-3xl md:text-4xl font-extrabold mb-2">
             Ubicación del proyecto
           </h2>
@@ -17,17 +33,20 @@ export default function Ubicacion() {
             <span className="font-semibold text-[#00A651]">El Recreo</span>, una zona
             céntrica, tranquila y de gran desarrollo en la ciudad de Trujillo.
           </p>
-
           <p className="text-[#E8ECF4] leading-relaxed">
             A pocos minutos de avenidas principales, centros comerciales, colegios y
             parques. Disfruta de un entorno ideal para tu familia.
           </p>
-
           <p className="font-semibold mt-3 text-white">Trujillo – Perú</p>
-        </div>
+        </motion.div>
 
-        {/* === LADO DERECHO (MAPA) === */}
-        <div className="relative h-[360px] md:h-[400px] lg:h-auto">
+        <motion.div
+          initial={{ opacity: 0, x: 50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+          viewport={{ once: true, amount: 0.3 }}
+          className="relative h-[360px] md:h-[400px] lg:h-auto"
+        >
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3900.8000669046353!2d-79.035!3d-8.112!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zOMKwMDYnNDMuMiJTIDc5wrAwMicyNi45Ilc!5e0!3m2!1ses!2spe!4v0000000000000"
             width="100%"
@@ -36,8 +55,8 @@ export default function Ubicacion() {
             loading="lazy"
             className="border-0 w-full h-full"
           ></iframe>
-        </div>
+        </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 }

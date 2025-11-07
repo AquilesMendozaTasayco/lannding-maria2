@@ -1,16 +1,15 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { motion } from "framer-motion";
 import { categorias, unidades } from "../data/departamentosData";
 import { HiOutlineBuildingOffice2 } from "react-icons/hi2";
 import CarruselPlano from "./CarruselPlano";
 
 export default function Departamentos() {
-  // 🔹 Comienza por defecto en “Diseño Familiar A (Nivel 3)”
   const [categoriaActiva, setCategoriaActiva] = useState("familiar-127");
   const [filtroEstado, setFiltroEstado] = useState("todos");
 
-  // === Filtrar unidades ===
   const unidadesFiltradas = useMemo(() => {
     return unidades
       .filter((u) =>
@@ -22,41 +21,52 @@ export default function Departamentos() {
       .sort((a, b) => a.nivel - b.nivel || a.numero.localeCompare(b.numero));
   }, [categoriaActiva, filtroEstado]);
 
-  // === Estadísticas ===
   const stats = useMemo(() => {
     const total = unidadesFiltradas.length;
     const disponibles = unidadesFiltradas.filter(
       (u) => u.estado === "disponible"
     ).length;
-    const vendidos = unidadesFiltradas.filter(
-      (u) => u.estado === "vendido"
-    ).length;
+    const vendidos = unidadesFiltradas.filter((u) => u.estado === "vendido").length;
     return { total, disponibles, vendidos };
   }, [unidadesFiltradas]);
 
-  // === Categoría activa ===
   const catSeleccionada = useMemo(
     () => categorias.find((c) => c.id === categoriaActiva),
     [categoriaActiva]
   );
 
   return (
-    <section id="departamentos" className="py-20 bg-white px-6 md:px-12 lg:px-24">
-      <div className="max-w-7xl mx-auto">
-        {/* === TÍTULO === */}
+    <motion.section
+      id="departamentos"
+      initial={{ opacity: 0, y: 70 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      viewport={{ once: true, amount: 0.2 }}
+      className="py-20 bg-white px-6 md:px-12 lg:px-24"
+    >
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        viewport={{ once: true, amount: 0.2 }}
+        className="max-w-7xl mx-auto"
+      >
         <div className="text-center mb-6 flex justify-center items-center gap-2">
           <HiOutlineBuildingOffice2 className="text-[#00A651] text-2xl" />
-          <h2 className="text-3xl font-bold text-[#004A99]">
-            Departamentos Disponibles
-          </h2>
+          <h2 className="text-3xl font-bold text-[#004A99]">Departamentos Disponibles</h2>
         </div>
 
         <p className="text-gray-700 max-w-2xl mx-auto text-center mb-8">
           Explora los planos reales del proyecto y revisa las unidades disponibles o vendidas según su tipo de diseño.
         </p>
 
-        {/* === TABS === */}
-        <div className="flex flex-wrap gap-3 justify-center mb-8">
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          viewport={{ once: true, amount: 0.3 }}
+          className="flex flex-wrap gap-3 justify-center mb-8"
+        >
           {categorias.map((c) => (
             <button
               key={c.id}
@@ -71,10 +81,15 @@ export default function Departamentos() {
               {c.nombre}
             </button>
           ))}
-        </div>
+        </motion.div>
 
-        {/* === FILTROS === */}
-        <div className="flex flex-wrap justify-center gap-4 mb-10">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.97 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          viewport={{ once: true, amount: 0.2 }}
+          className="flex flex-wrap justify-center gap-4 mb-10"
+        >
           <select
             value={filtroEstado}
             onChange={(e) => setFiltroEstado(e.target.value)}
@@ -84,7 +99,6 @@ export default function Departamentos() {
             <option value="disponible">Disponibles</option>
             <option value="vendido">Vendidos</option>
           </select>
-
           {filtroEstado !== "todos" && (
             <button
               onClick={() => setFiltroEstado("todos")}
@@ -93,13 +107,23 @@ export default function Departamentos() {
               Restablecer filtro
             </button>
           )}
-        </div>
+        </motion.div>
 
-        {/* === MOSTRAR PLANO === */}
         {catSeleccionada && (
-          <div className="max-w-6xl mx-auto mb-12 flex flex-col lg:flex-row items-start gap-10">
-            {/* Imagen o Carrusel */}
-            <div className="flex-1 bg-[#F9FAFB] border border-gray-200 rounded-2xl p-4 flex justify-center items-center shadow-sm hover:shadow-md transition">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+            viewport={{ once: true, amount: 0.3 }}
+            className="max-w-6xl mx-auto mb-12 flex flex-col lg:flex-row items-start gap-10"
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+              viewport={{ once: true, amount: 0.3 }}
+              className="flex-1 bg-[#F9FAFB] border border-gray-200 rounded-2xl p-4 flex justify-center items-center shadow-sm hover:shadow-md transition"
+            >
               {catSeleccionada.imagenes?.length > 1 ? (
                 <CarruselPlano imagenes={catSeleccionada.imagenes} />
               ) : (
@@ -109,14 +133,17 @@ export default function Departamentos() {
                   className="rounded-xl w-full max-w-md object-contain"
                 />
               )}
-            </div>
+            </motion.div>
 
-            {/* Detalles */}
-            <div className="flex-1 text-left space-y-4">
+            <motion.div
+              initial={{ opacity: 0, x: 40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.7, ease: "easeOut" }}
+              viewport={{ once: true, amount: 0.3 }}
+              className="flex-1 text-left space-y-4"
+            >
               <h3 className="text-2xl font-bold text-[#004A99]">{catSeleccionada.nombre}</h3>
-              <p className="text-gray-700">
-                {catSeleccionada.resumen} • {catSeleccionada.areaRango}
-              </p>
+              <p className="text-gray-700">{catSeleccionada.resumen} • {catSeleccionada.areaRango}</p>
 
               <div className="flex gap-4 text-sm">
                 <span className="px-3 py-1 rounded-full bg-[#E6F6EE] text-[#00A651]">
@@ -130,19 +157,20 @@ export default function Departamentos() {
                 </span>
               </div>
 
-              {/* Lista de departamentos */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-6">
                 {unidadesFiltradas
                   .filter((u) => u.categoriaId === catSeleccionada.id)
                   .map((u) => (
-                    <div
+                    <motion.div
                       key={u.id}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.4, ease: "easeOut", delay: 0.1 }}
+                      viewport={{ once: true, amount: 0.2 }}
                       className="border border-gray-200 rounded-xl p-4 bg-[#F9FAFB] hover:shadow-sm transition"
                     >
                       <div className="flex justify-between items-center">
-                        <h4 className="font-semibold text-[#004A99]">
-                          Dpto {u.numero}
-                        </h4>
+                        <h4 className="font-semibold text-[#004A99]">Dpto {u.numero}</h4>
                         <span
                           className={`text-xs px-2 py-1 rounded-full font-medium ${
                             u.estado === "disponible"
@@ -155,13 +183,13 @@ export default function Departamentos() {
                       </div>
                       <p className="text-sm text-gray-700">Nivel {u.nivel}</p>
                       <p className="text-sm text-gray-700">Área: {u.area} m²</p>
-                    </div>
+                    </motion.div>
                   ))}
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         )}
-      </div>
-    </section>
+      </motion.div>
+    </motion.section>
   );
 }
