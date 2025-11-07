@@ -61,7 +61,7 @@ export async function POST(req) {
   } catch (error) {
     console.error("Error al enviar correo:", error);
     return new Response(
-      JSON.stringify({ error: "No se pudo enviar el correo" }),
+      JSON.stringify({ error: "No se pudo enviar el correo." }),
       { status: 500 }
     );
   }
