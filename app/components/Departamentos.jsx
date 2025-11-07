@@ -3,37 +3,47 @@
 import { useMemo, useState } from "react";
 import { categorias, unidades } from "../data/departamentosData";
 import { HiOutlineBuildingOffice2 } from "react-icons/hi2";
+import CarruselPlano from "./CarruselPlano";
 
 export default function Departamentos() {
-  const [categoriaActiva, setCategoriaActiva] = useState("todas");
+  // 🔹 Comienza por defecto en “Diseño Familiar A (Nivel 3)”
+  const [categoriaActiva, setCategoriaActiva] = useState("familiar-127");
   const [filtroEstado, setFiltroEstado] = useState("todos");
 
-  // Filtrar unidades según categoría y estado
+  // === Filtrar unidades ===
   const unidadesFiltradas = useMemo(() => {
     return unidades
-      .filter(u => (categoriaActiva === "todas" ? true : u.categoriaId === categoriaActiva))
-      .filter(u => (filtroEstado === "todos" ? true : u.estado === filtroEstado))
+      .filter((u) =>
+        categoriaActiva === "todas" ? true : u.categoriaId === categoriaActiva
+      )
+      .filter((u) =>
+        filtroEstado === "todos" ? true : u.estado === filtroEstado
+      )
       .sort((a, b) => a.nivel - b.nivel || a.numero.localeCompare(b.numero));
   }, [categoriaActiva, filtroEstado]);
 
-  // Conteo por estado
+  // === Estadísticas ===
   const stats = useMemo(() => {
     const total = unidadesFiltradas.length;
-    const disponibles = unidadesFiltradas.filter(u => u.estado === "disponible").length;
-    const vendidos = unidadesFiltradas.filter(u => u.estado === "vendido").length;
+    const disponibles = unidadesFiltradas.filter(
+      (u) => u.estado === "disponible"
+    ).length;
+    const vendidos = unidadesFiltradas.filter(
+      (u) => u.estado === "vendido"
+    ).length;
     return { total, disponibles, vendidos };
   }, [unidadesFiltradas]);
 
-  // Categoría seleccionada
+  // === Categoría activa ===
   const catSeleccionada = useMemo(
-    () => categorias.find(c => c.id === categoriaActiva),
+    () => categorias.find((c) => c.id === categoriaActiva),
     [categoriaActiva]
   );
 
   return (
     <section id="departamentos" className="py-20 bg-white px-6 md:px-12 lg:px-24">
       <div className="max-w-7xl mx-auto">
-        {/* Título */}
+        {/* === TÍTULO === */}
         <div className="text-center mb-6 flex justify-center items-center gap-2">
           <HiOutlineBuildingOffice2 className="text-[#00A651] text-2xl" />
           <h2 className="text-3xl font-bold text-[#004A99]">
@@ -42,22 +52,11 @@ export default function Departamentos() {
         </div>
 
         <p className="text-gray-700 max-w-2xl mx-auto text-center mb-8">
-          Explora los planos reales del proyecto y revisa las unidades disponibles o vendidas.
+          Explora los planos reales del proyecto y revisa las unidades disponibles o vendidas según su tipo de diseño.
         </p>
 
-        {/* Tabs de categoría (los planos) */}
+        {/* === TABS === */}
         <div className="flex flex-wrap gap-3 justify-center mb-8">
-          <button
-            onClick={() => setCategoriaActiva("todas")}
-            className={`px-4 py-2 rounded-full border transition ${
-              categoriaActiva === "todas"
-                ? "bg-[#004A99] text-white border-[#004A99]"
-                : "bg-white text-[#004A99] border-[#004A99]/30 hover:border-[#004A99]"
-            }`}
-          >
-            Todas
-          </button>
-
           {categorias.map((c) => (
             <button
               key={c.id}
@@ -74,7 +73,7 @@ export default function Departamentos() {
           ))}
         </div>
 
-        {/* Filtros secundarios */}
+        {/* === FILTROS === */}
         <div className="flex flex-wrap justify-center gap-4 mb-10">
           <select
             value={filtroEstado}
@@ -86,37 +85,40 @@ export default function Departamentos() {
             <option value="vendido">Vendidos</option>
           </select>
 
-          {(categoriaActiva !== "todas" || filtroEstado !== "todos") && (
+          {filtroEstado !== "todos" && (
             <button
-              onClick={() => {
-                setCategoriaActiva("todas");
-                setFiltroEstado("todos");
-              }}
+              onClick={() => setFiltroEstado("todos")}
               className="text-sm text-[#004A99] hover:text-[#00A651] underline"
             >
-              Restablecer filtros
+              Restablecer filtro
             </button>
           )}
         </div>
 
-        {/* Mostrar plano de la categoría seleccionada */}
+        {/* === MOSTRAR PLANO === */}
         {catSeleccionada && (
-          <div className="max-w-6xl mx-auto mb-8 grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
-            <div className="bg-[#F9FAFB] border border-gray-200 rounded-2xl p-4">
-              <img
-                src={catSeleccionada.imagen}
-                alt={`Plano ${catSeleccionada.nombre}`}
-                className="rounded-xl w-full object-contain"
-              />
+          <div className="max-w-6xl mx-auto mb-12 flex flex-col lg:flex-row items-start gap-10">
+            {/* Imagen o Carrusel */}
+            <div className="flex-1 bg-[#F9FAFB] border border-gray-200 rounded-2xl p-4 flex justify-center items-center shadow-sm hover:shadow-md transition">
+              {catSeleccionada.imagenes?.length > 1 ? (
+                <CarruselPlano imagenes={catSeleccionada.imagenes} />
+              ) : (
+                <img
+                  src={catSeleccionada.imagenes?.[0]}
+                  alt={`Plano ${catSeleccionada.nombre}`}
+                  className="rounded-xl w-full max-w-md object-contain"
+                />
+              )}
             </div>
-            <div className="space-y-2 text-left">
-              <h3 className="text-2xl font-bold text-[#004A99]">
-                {catSeleccionada.nombre}
-              </h3>
+
+            {/* Detalles */}
+            <div className="flex-1 text-left space-y-4">
+              <h3 className="text-2xl font-bold text-[#004A99]">{catSeleccionada.nombre}</h3>
               <p className="text-gray-700">
                 {catSeleccionada.resumen} • {catSeleccionada.areaRango}
               </p>
-              <div className="flex gap-4 text-sm mt-3">
+
+              <div className="flex gap-4 text-sm">
                 <span className="px-3 py-1 rounded-full bg-[#E6F6EE] text-[#00A651]">
                   Disponibles: {stats.disponibles}
                 </span>
@@ -127,42 +129,38 @@ export default function Departamentos() {
                   Total: {stats.total}
                 </span>
               </div>
+
+              {/* Lista de departamentos */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-6">
+                {unidadesFiltradas
+                  .filter((u) => u.categoriaId === catSeleccionada.id)
+                  .map((u) => (
+                    <div
+                      key={u.id}
+                      className="border border-gray-200 rounded-xl p-4 bg-[#F9FAFB] hover:shadow-sm transition"
+                    >
+                      <div className="flex justify-between items-center">
+                        <h4 className="font-semibold text-[#004A99]">
+                          Dpto {u.numero}
+                        </h4>
+                        <span
+                          className={`text-xs px-2 py-1 rounded-full font-medium ${
+                            u.estado === "disponible"
+                              ? "bg-[#E6F6EE] text-[#00A651]"
+                              : "bg-red-100 text-red-600"
+                          }`}
+                        >
+                          {u.estado === "disponible" ? "Disponible" : "Vendido"}
+                        </span>
+                      </div>
+                      <p className="text-sm text-gray-700">Nivel {u.nivel}</p>
+                      <p className="text-sm text-gray-700">Área: {u.area} m²</p>
+                    </div>
+                  ))}
+              </div>
             </div>
           </div>
         )}
-
-        {/* Listado de unidades */}
-        <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {unidadesFiltradas.length === 0 ? (
-            <p className="col-span-full text-center text-gray-600 italic">
-              No se encontraron unidades con los filtros seleccionados.
-            </p>
-          ) : (
-            unidadesFiltradas.map((u) => (
-              <div
-                key={u.id}
-                className="border border-gray-200 rounded-xl p-5 bg-[#F9FAFB] hover:shadow-md hover:-translate-y-1 transition"
-              >
-                <div className="flex items-center justify-between mb-2">
-                  <h4 className="text-lg font-semibold text-[#004A99]">
-                    Dpto {u.numero}
-                  </h4>
-                  <span
-                    className={`px-3 py-1 rounded-full text-xs font-semibold ${
-                      u.estado === "disponible"
-                        ? "bg-[#E6F6EE] text-[#00A651]"
-                        : "bg-red-100 text-red-600"
-                    }`}
-                  >
-                    {u.estado === "disponible" ? "Disponible" : "Vendido"}
-                  </span>
-                </div>
-                <p className="text-gray-700">Nivel {u.nivel}</p>
-                <p className="text-gray-700">Área: {u.area} m²</p>
-              </div>
-            ))
-          )}
-        </div>
       </div>
     </section>
   );

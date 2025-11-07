@@ -1,7 +1,76 @@
+"use client";
+
+import { useState } from "react";
+import Swal from "sweetalert2";
 import { HiPhone, HiMapPin, HiEnvelope } from "react-icons/hi2";
 import { FaFacebookF } from "react-icons/fa";
 
 export default function Contacto() {
+  const [formData, setFormData] = useState({
+    nombre: "",
+    correo: "",
+    telefono: "",
+    mensaje: "",
+  });
+
+  const [loading, setLoading] = useState(false);
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // Validación rápida
+    if (!formData.nombre || !formData.correo || !formData.mensaje) {
+      Swal.fire({
+        icon: "warning",
+        title: "Campos incompletos",
+        text: "Por favor, completa los campos obligatorios.",
+        confirmButtonColor: "#004A99",
+      });
+      return;
+    }
+
+    try {
+      setLoading(true);
+
+      const res = await fetch("/api/sendEmail", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      if (res.ok) {
+        Swal.fire({
+          icon: "success",
+          title: "¡Mensaje enviado!",
+          text: "Tu mensaje fue enviado con éxito. Pronto nos pondremos en contacto contigo.",
+          confirmButtonColor: "#00A651",
+          background: "#F9FAFB",
+        });
+        setFormData({ nombre: "", correo: "", telefono: "", mensaje: "" });
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Error al enviar",
+          text: "Hubo un problema al enviar tu mensaje. Inténtalo nuevamente.",
+          confirmButtonColor: "#004A99",
+        });
+      }
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Error inesperado",
+        text: "Ocurrió un error de conexión. Intenta nuevamente más tarde.",
+        confirmButtonColor: "#004A99",
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <section
       id="contacto"
@@ -9,40 +78,58 @@ export default function Contacto() {
     >
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         {/* === IZQUIERDA: FORMULARIO === */}
-        <form className="bg-[#F9FAFB] p-8 rounded-2xl shadow-lg space-y-5 border border-gray-100">
+        <form
+          onSubmit={handleSubmit}
+          className="bg-[#F9FAFB] p-8 rounded-2xl shadow-lg space-y-5 border border-gray-100"
+        >
           <h3 className="text-2xl font-bold text-[#004A99]">
             Solicita información
           </h3>
           <p className="text-gray-600 text-sm mb-4">
-            Completa el formulario y te responderemos pronto
+            Completa el formulario y te responderemos pronto.
           </p>
 
           <input
             type="text"
-            placeholder="Nombre completo"
+            name="nombre"
+            placeholder="Nombre completo *"
+            value={formData.nombre}
+            onChange={handleChange}
             className="w-full p-3 rounded-md border border-gray-300 text-gray-800 focus:outline-none focus:ring-2 focus:ring-[#00A651]"
           />
           <input
             type="email"
-            placeholder="Correo electrónico"
+            name="correo"
+            placeholder="Correo electrónico *"
+            value={formData.correo}
+            onChange={handleChange}
             className="w-full p-3 rounded-md border border-gray-300 text-gray-800 focus:outline-none focus:ring-2 focus:ring-[#00A651]"
           />
           <input
             type="tel"
+            name="telefono"
             placeholder="Teléfono"
+            value={formData.telefono}
+            onChange={handleChange}
             className="w-full p-3 rounded-md border border-gray-300 text-gray-800 focus:outline-none focus:ring-2 focus:ring-[#00A651]"
           />
           <textarea
-            placeholder="Mensaje"
+            name="mensaje"
+            placeholder="Mensaje *"
+            value={formData.mensaje}
+            onChange={handleChange}
             className="w-full p-3 rounded-md border border-gray-300 text-gray-800 h-32 focus:outline-none focus:ring-2 focus:ring-[#00A651]"
           ></textarea>
 
           <button
             type="submit"
-            className="bg-[#004A99] text-white font-semibold py-3 px-6 rounded-md w-full hover:bg-[#003b7d] transition-all duration-300 flex items-center justify-center gap-2"
+            disabled={loading}
+            className={`${
+              loading ? "bg-[#00A651]/70 cursor-not-allowed" : "bg-[#004A99] hover:bg-[#003b7d]"
+            } text-white font-semibold py-3 px-6 rounded-md w-full transition-all duration-300 flex items-center justify-center gap-2`}
           >
             <HiEnvelope className="text-lg" />
-            Enviar mensaje
+            {loading ? "Enviando..." : "Enviar mensaje"}
           </button>
 
           <p className="text-xs text-gray-500 text-center">

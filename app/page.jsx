@@ -7,6 +7,7 @@ import Features from "./components/Features";
 import Galeria from "./components/Galeria";
 import AvancesObra from "./components/AvancesObra";
 import VideosPromocionales from "./components/VideosPromocionales";
+import BotonWhatsApp from "./components/BotonWhatsApp";
 
 export default function Home() {
   return (
@@ -20,6 +21,7 @@ export default function Home() {
       <AvancesObra />
       <VideosPromocionales />
       <Contacto />
+      <BotonWhatsApp />
     </>
   );
 }
