@@ -14,7 +14,7 @@ export default function Hero() {
       id="inicio"
       className="relative -mt-[80px] min-h-[calc(100vh+80px)] flex flex-col items-center justify-center text-white text-center bg-cover bg-center bg-no-repeat overflow-hidden"
       style={{
-        backgroundImage: "url('/ma2-img.png')",
+        backgroundImage: "url('/ma2-img.webp')",
       }}
     >
       <div className="absolute inset-0 bg-black/60 z-0" />

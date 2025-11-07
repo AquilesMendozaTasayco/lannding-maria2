@@ -20,7 +20,7 @@ export default function Footer() {
         <div className="space-y-5">
           <div className="relative w-48 h-16">
             <Image
-              src="/logo-maria-aux.png"
+              src="/logo-maria-aux.webp"
               alt="Residencial María Auxiliadora II"
               fill
               className="object-contain"

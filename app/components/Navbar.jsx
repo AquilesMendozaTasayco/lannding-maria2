@@ -44,10 +44,9 @@ export default function Navbar() {
       }`}
     >
       <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
-        {/* Logo */}
         <a href="#inicio" className="flex items-center gap-2">
           <Image
-            src="/logo-maria-aux.png"
+            src="/logo-maria-aux.webp"
             alt="Logo María Auxiliadora II"
             width={150}
             height={45}
@@ -56,7 +55,6 @@ export default function Navbar() {
           />
         </a>
 
-        {/* Navegación Desktop */}
         <nav className="hidden md:flex gap-8 font-medium">
           {navLinks.map((link) => (
             <a
@@ -82,7 +80,6 @@ export default function Navbar() {
           ))}
         </nav>
 
-        {/* Botón móvil */}
         <button
           onClick={() => setMenuOpen(!menuOpen)}
           className="md:hidden text-white focus:outline-none"
@@ -91,7 +88,6 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Menú móvil */}
       <div
         className={`md:hidden absolute top-full left-0 w-full bg-white/95 text-[#004A99] shadow-lg transition-all duration-300 origin-top ${
           menuOpen
