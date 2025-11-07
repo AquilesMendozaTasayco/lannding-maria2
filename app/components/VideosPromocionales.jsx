@@ -14,7 +14,6 @@ export default function VideosPromocionales() {
   const sectionRef = useRef(null);
   const currentVideo = videosData[current];
 
-  // Detectar interacción del usuario para habilitar sonido
   useEffect(() => {
     const enableSound = () => setCanPlayWithSound(true);
     window.addEventListener("click", enableSound);
@@ -25,35 +24,36 @@ export default function VideosPromocionales() {
     };
   }, []);
 
-  // Detectar visibilidad de la sección
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => setIsVisible(entry.isIntersecting),
-      { threshold: 0.3 }
+      ([entry]) => setIsVisible(entry.intersectionRatio > 0.5),
+      { threshold: [0, 0.5, 1] }
     );
     const section = sectionRef.current;
     if (section) observer.observe(section);
     return () => section && observer.unobserve(section);
   }, []);
 
-  // Control de reproducción + cambio automático
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
-
-    video.muted = !canPlayWithSound;
-
-    if (isVisible) {
-      video.play().catch(() => console.log("Autoplay bloqueado por el navegador"));
-    } else {
-      video.pause();
-    }
 
     const handleEnded = () => {
       setCurrent((prev) => (prev + 1) % videosData.length);
     };
 
     video.addEventListener("ended", handleEnded);
+
+    if (isVisible) {
+      video.muted = !canPlayWithSound;
+      video
+        .play()
+        .catch(() => console.log("Autoplay bloqueado por el navegador"));
+    } else {
+      video.pause();
+      video.muted = true;
+    }
+
     return () => video.removeEventListener("ended", handleEnded);
   }, [isVisible, current, canPlayWithSound]);
 
@@ -72,7 +72,6 @@ export default function VideosPromocionales() {
         viewport={{ once: true, amount: 0.3 }}
         className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-12 relative z-10"
       >
-        {/* VIDEO */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
@@ -94,7 +93,6 @@ export default function VideosPromocionales() {
           </div>
         </motion.div>
 
-        {/* TEXTO */}
         <motion.div
           key={currentVideo.id}
           initial={{ opacity: 0, x: 60 }}
