@@ -9,48 +9,53 @@ import { FaFacebookF, FaInstagram, FaYoutube, FaWhatsapp } from "react-icons/fa"
 export default function VideosPromocionales() {
   const [current, setCurrent] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
-  const [soundEnabled, setSoundEnabled] = useState(false);
+  const [canPlayWithSound, setCanPlayWithSound] = useState(false);
   const videoRef = useRef(null);
   const sectionRef = useRef(null);
   const currentVideo = videosData[current];
 
+  // Detectar interacción del usuario para habilitar sonido
   useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-    const handleEnded = () => setCurrent((prev) => (prev + 1) % videosData.length);
-    video.addEventListener("ended", handleEnded);
-    return () => video.removeEventListener("ended", handleEnded);
+    const enableSound = () => setCanPlayWithSound(true);
+    window.addEventListener("click", enableSound);
+    window.addEventListener("touchstart", enableSound);
+    return () => {
+      window.removeEventListener("click", enableSound);
+      window.removeEventListener("touchstart", enableSound);
+    };
   }, []);
 
+  // Detectar visibilidad de la sección
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => setIsVisible(entry.isIntersecting),
       { threshold: 0.3 }
     );
-    if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => observer.disconnect();
+    const section = sectionRef.current;
+    if (section) observer.observe(section);
+    return () => section && observer.unobserve(section);
   }, []);
 
-  useEffect(() => {
-    const enableSound = () => {
-      setSoundEnabled(true);
-      window.removeEventListener("click", enableSound);
-    };
-    window.addEventListener("click", enableSound);
-    return () => window.removeEventListener("click", enableSound);
-  }, []);
-
+  // Control de reproducción + cambio automático
   useEffect(() => {
     const video = videoRef.current;
-    if (video) {
-      video.muted = !soundEnabled; 
-      if (isVisible) {
-        video.play().catch(() => {});
-      } else {
-        video.pause();
-      }
+    if (!video) return;
+
+    video.muted = !canPlayWithSound;
+
+    if (isVisible) {
+      video.play().catch(() => console.log("Autoplay bloqueado por el navegador"));
+    } else {
+      video.pause();
     }
-  }, [isVisible, current, soundEnabled]);
+
+    const handleEnded = () => {
+      setCurrent((prev) => (prev + 1) % videosData.length);
+    };
+
+    video.addEventListener("ended", handleEnded);
+    return () => video.removeEventListener("ended", handleEnded);
+  }, [isVisible, current, canPlayWithSound]);
 
   return (
     <section
@@ -67,6 +72,7 @@ export default function VideosPromocionales() {
         viewport={{ once: true, amount: 0.3 }}
         className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-12 relative z-10"
       >
+        {/* VIDEO */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
@@ -77,7 +83,6 @@ export default function VideosPromocionales() {
           <div className="relative w-full max-w-[420px] h-[680px] overflow-hidden rounded-3xl shadow-[0_8px_30px_rgba(0,0,0,0.12)] border border-[#004A9910] bg-gradient-to-br from-[#ffffff] to-[#f5faff]">
             <video
               ref={videoRef}
-              key={currentVideo.id}
               src={currentVideo.src}
               playsInline
               autoPlay
@@ -89,6 +94,7 @@ export default function VideosPromocionales() {
           </div>
         </motion.div>
 
+        {/* TEXTO */}
         <motion.div
           key={currentVideo.id}
           initial={{ opacity: 0, x: 60 }}
