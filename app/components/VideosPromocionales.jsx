@@ -9,6 +9,7 @@ import { FaFacebookF, FaInstagram, FaYoutube, FaWhatsapp } from "react-icons/fa"
 export default function VideosPromocionales() {
   const [current, setCurrent] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
+  const [soundEnabled, setSoundEnabled] = useState(false);
   const videoRef = useRef(null);
   const sectionRef = useRef(null);
   const currentVideo = videosData[current];
@@ -31,16 +32,25 @@ export default function VideosPromocionales() {
   }, []);
 
   useEffect(() => {
+    const enableSound = () => {
+      setSoundEnabled(true);
+      window.removeEventListener("click", enableSound);
+    };
+    window.addEventListener("click", enableSound);
+    return () => window.removeEventListener("click", enableSound);
+  }, []);
+
+  useEffect(() => {
     const video = videoRef.current;
     if (video) {
-      video.muted = true; // Autoplay permitido en la mayoría de navegadores
+      video.muted = !soundEnabled; 
       if (isVisible) {
         video.play().catch(() => {});
       } else {
         video.pause();
       }
     }
-  }, [isVisible, current]);
+  }, [isVisible, current, soundEnabled]);
 
   return (
     <section
@@ -70,7 +80,6 @@ export default function VideosPromocionales() {
               key={currentVideo.id}
               src={currentVideo.src}
               playsInline
-              muted
               autoPlay
               loop={false}
               controls
@@ -108,36 +117,16 @@ export default function VideosPromocionales() {
           </p>
 
           <div className="flex items-center gap-4 mb-10">
-            <a
-              href="https://www.facebook.com/rodenconstructores"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[#1877F2] hover:scale-110 transition-transform text-2xl"
-            >
+            <a href="https://www.facebook.com/rodenconstructores" target="_blank" rel="noopener noreferrer" className="text-[#1877F2] hover:scale-110 transition-transform text-2xl">
               <FaFacebookF />
             </a>
-            <a
-              href="https://www.instagram.com/rodenconstructores/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[#E4405F] hover:scale-110 transition-transform text-2xl"
-            >
+            <a href="https://www.instagram.com/rodenconstructores/" target="_blank" rel="noopener noreferrer" className="text-[#E4405F] hover:scale-110 transition-transform text-2xl">
               <FaInstagram />
             </a>
-            <a
-              href="https://www.youtube.com/@rodenconstructores6797"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[#FF0000] hover:scale-110 transition-transform text-2xl"
-            >
+            <a href="https://www.youtube.com/@rodenconstructores6797" target="_blank" rel="noopener noreferrer" className="text-[#FF0000] hover:scale-110 transition-transform text-2xl">
               <FaYoutube />
             </a>
-            <a
-              href="https://wa.me/51956223460"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[#25D366] hover:scale-110 transition-transform text-2xl"
-            >
+            <a href="https://wa.me/51956223460" target="_blank" rel="noopener noreferrer" className="text-[#25D366] hover:scale-110 transition-transform text-2xl">
               <FaWhatsapp />
             </a>
           </div>
