@@ -2,19 +2,23 @@ import Hero from "./components/Hero";
 import Description from "./components/Description";
 import Ubicacion from "./components/Ubicacion";
 import Departamentos from "./components/Departamentos";
-import AreasComunes from "./components/AreasComunes";
-import SobreRoden from "./components/SobreRoden";
 import Contacto from "./components/Contacto";
+import Features from "./components/Features";
+import Galeria from "./components/Galeria";
+import AvancesObra from "./components/AvancesObra";
+import VideosPromocionales from "./components/VideosPromocionales";
 
 export default function Home() {
   return (
     <>
       <Hero />
       <Description />
-      <Ubicacion />
+      <Features />
+      <Galeria />
       <Departamentos />
-      <AreasComunes />
-      <SobreRoden />
+      <Ubicacion />
+      <AvancesObra />
+      <VideosPromocionales />
       <Contacto />
     </>
   );

@@ -30,8 +30,10 @@ export default function Navbar() {
   const navLinks = [
     { id: "inicio", label: "Inicio" },
     { id: "proyecto", label: "Proyecto" },
-    { id: "ubicacion", label: "Ubicación" },
+    { id: "caracteristicas", label: "Caracteristicas" },
+    { id: "galeria", label: "Galeria" },
     { id: "departamentos", label: "Departamentos" },
+    { id: "avances", label: "Avances" },
     { id: "contacto", label: "Contacto" },
   ];
 
