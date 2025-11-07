@@ -1,12 +1,12 @@
 // app/data/galeriaData.js
 
 export const galeriaImages = [
-  { src: "/galeria/COCINA.jpg", alt: "Cocina moderna" },
-  { src: "/galeria/COMEDOR.jpg", alt: "Comedor principal" },
-  { src: "/galeria/COMEDOR 2.jpg", alt: "Comedor alterno" },
-  { src: "/galeria/COMEDOR 3.jpg", alt: "Comedor amplio" },
-  { src: "/galeria/dormitorio.png", alt: "Dormitorio principal" },
-  { src: "/galeria/lavanderia.png", alt: "Lavandería equipada" },
-  { src: "/galeria/SALA COMEDOR 2.jpg", alt: "Sala comedor" },
-  { src: "/galeria/salaIluminada.jpg", alt: "Sala comedor iluminada" },
+  { src: "/galeria/COCINA.webp", alt: "Cocina moderna" },
+  { src: "/galeria/COMEDOR.webp", alt: "Comedor principal" },
+  { src: "/galeria/COMEDOR2.webp", alt: "Comedor alterno" },
+  { src: "/galeria/COMEDOR3.webp", alt: "Comedor amplio" },
+  { src: "/galeria/dormitorio.webp", alt: "Dormitorio principal" },
+  { src: "/galeria/lavanderia.webp", alt: "Lavandería equipada" },
+  { src: "/galeria/SALACOMEDOR2.webp", alt: "Sala comedor" },
+  { src: "/galeria/salaIluminada.webp", alt: "Sala comedor iluminada" },
 ];

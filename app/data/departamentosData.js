@@ -4,14 +4,14 @@ export const categorias = [
     nombre: "Diseño Familiar A (Nivel 3)",
     resumen: "3 dormitorios • 3 baños",
     areaRango: "≈ 127 m²",
-    imagenes: ["/planos/plano-127-301.png"], 
+    imagenes: ["/planos/plano-127-301.webp"], 
   },
   {
     id: "familiar-110",
     nombre: "Diseño Familiar B (Niveles 4–6)",
     resumen: "3 dormitorios • 3 baños",
     areaRango: "≈ 110 m²",
-    imagenes: ["/planos/plano-110-401.png"],
+    imagenes: ["/planos/plano-110-401.webp"],
   },
   {
     id: "familiar-100",
@@ -19,10 +19,10 @@ export const categorias = [
     resumen: "3 dormitorios • 3 baños",
     areaRango: "≈ 99–105 m²",
     imagenes: [
-      "/planos/plano-100-701.png", 
-      "/planos/plano-100-801.png", 
-      "/planos/plano-100-901.png", 
-      "/planos/plano-100-1001.png", 
+      "/planos/plano-100-701.webp", 
+      "/planos/plano-100-801.webp", 
+      "/planos/plano-100-901.webp", 
+      "/planos/plano-100-1001.webp", 
     ],
   },
   {
@@ -31,18 +31,17 @@ export const categorias = [
     resumen: "3 dormitorios • 2 baños",
     areaRango: "≈ 80–98 m²",
     imagenes: [
-      "/planos/plano-98-402.png",
-      "/planos/plano-98-502.png",
-      "/planos/plano-98-602.png",
-      "/planos/plano-98-702.png",
-      "/planos/plano-98-802.png",
-      "/planos/plano-98-902.png",
-      "/planos/plano-98-1002.png",
+      "/planos/plano-98-402.webp",
+      "/planos/plano-98-502.webp",
+      "/planos/plano-98-602.webp",
+      "/planos/plano-98-702.webp",
+      "/planos/plano-98-802.webp",
+      "/planos/plano-98-902.webp",
+      "/planos/plano-98-1002.webp",
     ],
   },
 ];
 
-// === UNIDADES (según brochure MA2) ===
 export const unidades = [
   // --- Familiar 127 m² ---
   { id: 1, numero: "301", nivel: 3, area: 127.11, estado: "disponible", categoriaId: "familiar-127" },

@@ -5,7 +5,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { HiHomeModern } from "react-icons/hi2";
 
-const images = ["/MA2-render-1.png"];
+const images = ["/MA2-render-1.webp"];
 
 export default function Description() {
   const [currentIndex, setCurrentIndex] = useState(0);
