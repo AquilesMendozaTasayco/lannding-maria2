@@ -57,6 +57,11 @@ export default function VideosPromocionales() {
     return () => video.removeEventListener("ended", handleEnded);
   }, [isVisible, current, canPlayWithSound]);
 
+  const fadeIn = {
+    hidden: { opacity: 0, y: 25 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } },
+  };
+
   return (
     <section
       ref={sectionRef}
@@ -66,19 +71,13 @@ export default function VideosPromocionales() {
       <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_top_left,_#004A9915,_transparent_70%)] pointer-events-none"></div>
 
       <motion.div
-        initial={{ opacity: 0, y: 60 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
+        variants={fadeIn}
+        initial="hidden"
+        whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
         className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-12 relative z-10"
       >
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.7, ease: "easeOut" }}
-          viewport={{ once: true, amount: 0.3 }}
-          className="flex-1 flex justify-center"
-        >
+        <motion.div variants={fadeIn} className="flex-1 flex justify-center">
           <div className="relative w-full max-w-[420px] h-[680px] overflow-hidden rounded-3xl shadow-[0_8px_30px_rgba(0,0,0,0.12)] border border-[#004A9910] bg-gradient-to-br from-[#ffffff] to-[#f5faff]">
             <video
               ref={videoRef}
@@ -95,10 +94,7 @@ export default function VideosPromocionales() {
 
         <motion.div
           key={currentVideo.id}
-          initial={{ opacity: 0, x: 60 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.7, ease: "easeOut" }}
-          viewport={{ once: true, amount: 0.3 }}
+          variants={fadeIn}
           className="flex-1 text-left"
         >
           <p className="inline-block px-4 py-1 text-sm rounded-full bg-[#E6F6EE] text-[#00A651] font-semibold mb-3">
@@ -121,16 +117,36 @@ export default function VideosPromocionales() {
           </p>
 
           <div className="flex items-center gap-4 mb-10">
-            <a href="https://www.facebook.com/rodenconstructores" target="_blank" rel="noopener noreferrer" className="text-[#1877F2] hover:scale-110 transition-transform text-2xl">
+            <a
+              href="https://www.facebook.com/rodenconstructores"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#1877F2] hover:scale-110 transition-transform text-2xl"
+            >
               <FaFacebookF />
             </a>
-            <a href="https://www.instagram.com/rodenconstructores/" target="_blank" rel="noopener noreferrer" className="text-[#E4405F] hover:scale-110 transition-transform text-2xl">
+            <a
+              href="https://www.instagram.com/rodenconstructores/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#E4405F] hover:scale-110 transition-transform text-2xl"
+            >
               <FaInstagram />
             </a>
-            <a href="https://www.youtube.com/@rodenconstructores6797" target="_blank" rel="noopener noreferrer" className="text-[#FF0000] hover:scale-110 transition-transform text-2xl">
+            <a
+              href="https://www.youtube.com/@rodenconstructores6797"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#FF0000] hover:scale-110 transition-transform text-2xl"
+            >
               <FaYoutube />
             </a>
-            <a href="https://wa.me/51956223460" target="_blank" rel="noopener noreferrer" className="text-[#25D366] hover:scale-110 transition-transform text-2xl">
+            <a
+              href="https://wa.me/51956223460"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#25D366] hover:scale-110 transition-transform text-2xl"
+            >
               <FaWhatsapp />
             </a>
           </div>

@@ -4,20 +4,21 @@ import { motion } from "framer-motion";
 import { featuresData } from "../data/featuresData";
 
 export default function Feature() {
+  const fadeIn = {
+    hidden: { opacity: 0, y: 25 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } },
+  };
+
   return (
     <motion.section
       id="caracteristicas"
-      initial={{ opacity: 0, scale: 0.95 }}
-      whileInView={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.7, ease: "easeOut" }}
+      initial="hidden"
+      whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}
       className="w-full bg-[#F5F7FA] py-20 px-6 md:px-12 lg:px-24 text-center"
     >
       <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
-        viewport={{ once: true, amount: 0.3 }}
+        variants={fadeIn}
         className="max-w-3xl mx-auto mb-14"
       >
         <p className="inline-block px-4 py-1 text-sm rounded-full bg-[#E6F6EE] text-[#00A651] font-semibold mb-4">
@@ -38,15 +39,9 @@ export default function Feature() {
         {featuresData.map((item, i) => (
           <motion.div
             key={i}
-            initial={{ opacity: 0, y: 40, rotateX: -15 }}
-            whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
-            transition={{
-              duration: 0.5,
-              ease: "easeOut",
-              delay: i * 0.1,
-            }}
-            viewport={{ once: true, amount: 0.2 }}
-            className="bg-white border border-gray-200 rounded-2xl p-8 flex flex-col items-center text-center shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
+            variants={fadeIn}
+            transition={{ duration: 0.4, delay: i * 0.08 }}
+            className="bg-white border border-gray-200 rounded-2xl p-8 flex flex-col items-center text-center shadow-sm hover:shadow-md transition-all duration-200 hover:-translate-y-0.5"
           >
             <div className="mb-4">{item.icon}</div>
             <h3 className="font-semibold text-lg text-[#004A99] mb-2">

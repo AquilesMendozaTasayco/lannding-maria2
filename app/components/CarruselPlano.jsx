@@ -8,23 +8,25 @@ export default function CarruselPlano({ imagenes }) {
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
 
-  // === Funciones de navegación ===
   const siguiente = () => setIndex((i) => (i + 1) % imagenes.length);
   const anterior = () =>
     setIndex((i) => (i - 1 + imagenes.length) % imagenes.length);
 
-  // === Auto avance ===
   useEffect(() => {
     const timer = setInterval(() => siguiente(), 5000);
     return () => clearInterval(timer);
   }, [imagenes.length]);
 
-  // === Swipe táctil ===
   const onTouchStart = (e) => (touchStartX.current = e.touches[0].clientX);
   const onTouchMove = (e) => (touchEndX.current = e.touches[0].clientX);
   const onTouchEnd = () => {
     if (touchStartX.current - touchEndX.current > 60) siguiente();
     if (touchStartX.current - touchEndX.current < -60) anterior();
+  };
+
+  const fadeIn = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { duration: 0.35, ease: "easeOut" } },
   };
 
   return (
@@ -34,18 +36,16 @@ export default function CarruselPlano({ imagenes }) {
       onTouchMove={onTouchMove}
       onTouchEnd={onTouchEnd}
     >
-      {/* Imagen activa (solo una en el DOM, sin superposición) */}
       <motion.img
         key={index}
         src={imagenes[index]}
         alt={`Plano ${index + 1}`}
         className="w-full object-contain rounded-xl select-none"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.4, ease: "easeInOut" }}
+        variants={fadeIn}
+        initial="hidden"
+        animate="visible"
       />
 
-      {/* Flechas de control */}
       {imagenes.length > 1 && (
         <>
           <button
@@ -62,7 +62,6 @@ export default function CarruselPlano({ imagenes }) {
             ›
           </button>
 
-          {/* Indicadores inferiores */}
           <div className="absolute bottom-3 left-0 right-0 flex justify-center gap-2">
             {imagenes.map((_, i) => (
               <span

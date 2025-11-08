@@ -65,28 +65,26 @@ export default function Contacto() {
     }
   };
 
+  const fadeIn = {
+    hidden: { opacity: 0, y: 25 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } },
+  };
+
   return (
     <motion.section
       id="contacto"
-      initial={{ opacity: 0, y: 60 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
+      initial="hidden"
+      whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}
       className="w-full bg-white py-20 px-6 md:px-12 lg:px-24"
     >
       <motion.div
-        initial={{ opacity: 0, scale: 0.97 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.7, ease: "easeOut" }}
-        viewport={{ once: true, amount: 0.3 }}
+        variants={fadeIn}
         className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
       >
         <motion.form
           onSubmit={handleSubmit}
-          initial={{ opacity: 0, x: -50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.7, ease: "easeOut" }}
-          viewport={{ once: true, amount: 0.3 }}
+          variants={fadeIn}
           className="bg-[#F9FAFB] p-8 rounded-2xl shadow-lg space-y-5 border border-gray-100"
         >
           <h3 className="text-2xl font-bold text-[#004A99]">
@@ -146,13 +144,7 @@ export default function Contacto() {
           </p>
         </motion.form>
 
-        <motion.div
-          initial={{ opacity: 0, x: 50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.7, ease: "easeOut" }}
-          viewport={{ once: true, amount: 0.3 }}
-          className="text-left space-y-6"
-        >
+        <motion.div variants={fadeIn} className="text-left space-y-6">
           <div>
             <h2 className="text-3xl md:text-4xl font-extrabold text-[#004A99] mb-3">
               Hablemos sobre tu{" "}
@@ -176,7 +168,7 @@ export default function Contacto() {
             </p>
             <p className="flex items-center gap-3 text-gray-700">
               <HiPhone className="text-[#00A651] text-xl" />
-              +51  956 223 460
+              +51 956 223 460
             </p>
             <p className="flex items-center gap-3 text-gray-700">
               <FaFacebookF className="text-[#00A651] text-lg" />

@@ -19,25 +19,31 @@ export default function Description() {
     return () => clearInterval(id);
   }, [slides.length]);
 
+  const fadeIn = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, ease: "easeOut" },
+    },
+  };
+
   return (
     <motion.section
       id="proyecto"
-      initial={{ opacity: 0, y: 60 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.7, ease: "easeOut" }}
+      initial="hidden"
+      whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}
       className="relative py-16 px-6 md:px-12 lg:px-24 bg-white"
     >
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-10">
+        {/* === TEXTO === */}
         <motion.div
-          initial={{ opacity: 0, x: -60 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          viewport={{ once: true, amount: 0.3 }}
+          variants={fadeIn}
           className="flex-1 text-left flex flex-col justify-center space-y-5"
         >
           <div className="flex items-center gap-2 text-[#00A651] font-semibold uppercase tracking-wide">
-            <HiHomeModern className="text-[#00A651] text-lg animate-pulse" />
+            <HiHomeModern className="text-[#00A651] text-lg" />
             <span>Proyecto residencial exclusivo</span>
           </div>
 
@@ -105,10 +111,7 @@ export default function Description() {
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          viewport={{ once: true, amount: 0.3 }}
+          variants={fadeIn}
           className="flex-1 w-full max-w-xl relative overflow-hidden rounded-2xl shadow-lg aspect-[5/6]"
         >
           {slides.map((s, i) => (
@@ -116,10 +119,9 @@ export default function Description() {
               key={s.id}
               animate={{
                 opacity: i === currentIndex ? 1 : 0,
-                scale: i === currentIndex ? 1 : 1.05,
-                zIndex: i === currentIndex ? 10 : 0,
+                scale: i === currentIndex ? 1 : 1.03,
               }}
-              transition={{ duration: 1.2, ease: "easeInOut" }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
               className="absolute inset-0"
             >
               <Image

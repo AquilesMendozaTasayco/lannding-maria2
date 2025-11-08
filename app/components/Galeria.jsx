@@ -8,22 +8,20 @@ import { galeriaImages } from "../data/galeriaData";
 export default function Galeria() {
   const [selected, setSelected] = useState(null);
 
+  const fadeIn = {
+    hidden: { opacity: 0, y: 25 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } },
+  };
+
   return (
     <motion.section
       id="galeria"
-      initial={{ opacity: 0, y: 60 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.7, ease: "easeOut" }}
+      initial="hidden"
+      whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}
       className="w-full bg-[#F5F7FA] py-20 px-6 md:px-12 lg:px-24 text-center"
     >
-      <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
-        viewport={{ once: true, amount: 0.3 }}
-        className="max-w-3xl mx-auto mb-14"
-      >
+      <motion.div variants={fadeIn} className="max-w-3xl mx-auto mb-14">
         <p className="inline-block px-4 py-1 text-sm rounded-full bg-[#E6F6EE] text-[#00A651] font-semibold mb-4">
           ✳ GALERÍA
         </p>
@@ -38,22 +36,17 @@ export default function Galeria() {
       </motion.div>
 
       <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-        viewport={{ once: true, amount: 0.2 }}
+        variants={fadeIn}
         className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto"
       >
         {galeriaImages.map((img, index) => (
           <motion.div
             key={index}
-            initial={{ opacity: 0, rotateY: -15 }}
-            whileInView={{ opacity: 1, rotateY: 0 }}
-            transition={{ duration: 0.5, ease: "easeOut", delay: index * 0.1 }}
-            viewport={{ once: true, amount: 0.2 }}
-            whileHover={{ scale: 1.04 }}
+            variants={fadeIn}
+            transition={{ duration: 0.4, delay: index * 0.07 }}
+            whileHover={{ scale: 1.03 }}
             onClick={() => setSelected(img.src)}
-            className="relative cursor-pointer overflow-hidden rounded-xl shadow-md hover:shadow-xl transition-all duration-300 group"
+            className="relative cursor-pointer overflow-hidden rounded-xl shadow-md hover:shadow-lg transition-all duration-200 group"
           >
             <Image
               src={img.src}
@@ -83,10 +76,10 @@ export default function Galeria() {
           >
             <motion.div
               className="relative max-w-5xl w-full"
-              initial={{ scale: 0.9, opacity: 0 }}
+              initial={{ scale: 0.95, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              transition={{ duration: 0.4, ease: "easeOut" }}
+              exit={{ scale: 0.95, opacity: 0 }}
+              transition={{ duration: 0.35, ease: "easeOut" }}
             >
               <Image
                 src={selected}
