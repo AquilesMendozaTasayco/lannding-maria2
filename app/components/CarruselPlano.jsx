@@ -28,7 +28,6 @@ export default function CarruselPlano({ imagenes }) {
     hidden: { opacity: 0 },
     visible: { opacity: 1, transition: { duration: 0.35, ease: "easeOut" } },
   };
-
   return (
     <div
       className="relative w-full max-w-md overflow-hidden rounded-xl"
