@@ -61,7 +61,6 @@ export default function CarruselPlano({ imagenes }) {
           >
             ›
           </button>
-
           <div className="absolute bottom-3 left-0 right-0 flex justify-center gap-2">
             {imagenes.map((_, i) => (
               <span
