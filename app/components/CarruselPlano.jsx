@@ -44,7 +44,6 @@ export default function CarruselPlano({ imagenes }) {
         initial="hidden"
         animate="visible"
       />
-
       {imagenes.length > 1 && (
         <>
           <button
