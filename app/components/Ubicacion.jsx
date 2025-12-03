@@ -13,38 +13,44 @@ export default function Ubicacion() {
       className="w-full bg-[#004A99] text-white"
     >
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2">
+        
         {/* === TEXTO === */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
           viewport={{ once: true, amount: 0.3 }}
-          className="flex flex-col justify-center px-8 md:px-12 py-14 space-y-4"
+          className="flex flex-col justify-center px-8 md:px-12 py-14 space-y-6"
         >
           <h2 className="text-3xl md:text-4xl font-extrabold mb-2">
             Ubicación del proyecto
           </h2>
           <hr className="border-[#00A651] w-20 mb-2" />
-          <p className="text-[#E8ECF4] leading-relaxed">
+
+          <p className="text-[#E8ECF4] leading-relaxed text-lg">
             El proyecto{" "}
             <span className="font-semibold text-white">
               Residencial María Auxiliadora II
             </span>{" "}
             se encuentra ubicado en{" "}
-            <span className="font-semibold text-[#00A651]">
+            <span className="font-extrabold text-[#28eb83] text-xl">
               Calle Venezuela, Urb. El Recreo
             </span>
             , una zona céntrica, tranquila y de gran desarrollo en la ciudad de
             Trujillo.
           </p>
-          <p className="text-[#E8ECF4] leading-relaxed">
+
+          <p className="text-[#E8ECF4] leading-relaxed text-lg">
             A pocos minutos de avenidas principales, centros comerciales,
             colegios y parques. Disfruta de un entorno ideal para tu familia.
           </p>
-          <p className="font-semibold mt-3 text-white">Trujillo – Perú</p>
+
+          <p className="font-semibold mt-3 text-white text-lg">
+            Trujillo – Perú
+          </p>
         </motion.div>
 
-        {/* === MAPA (MISMA ALTURA QUE TENÍAS) === */}
+        {/* === MAPA === */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}

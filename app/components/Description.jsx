@@ -53,26 +53,26 @@ export default function Description() {
           </h2>
 
           <p className="text-gray-700 leading-relaxed text-[1.05rem]">
-            Vive frente a un hermoso parque en Trujillo, rodeado de naturaleza y
-            tranquilidad.{" "}
+            Inspírate en un proyecto moderno que combina diseño actual con
+            comodidad y funcionalidad.{" "}
             <span className="font-semibold text-[#004A99]">
               María Auxiliadora II
             </span>{" "}
-            ofrece departamentos cómodos, modernos y estratégicamente ubicados
-            cerca de colegios, bancos y centros comerciales.
+            ofrece departamentos confortables en una ubicación estratégica de
+            Trujillo, ideales para vivir o invertir.
           </p>
 
           <p className="text-gray-600 leading-relaxed text-base">
-            Diseñado para quienes buscan confort y calidad de vida en un entorno
-            seguro y funcional.
+            Disfruta de ambientes bien distribuidos, iluminación natural y
+            espacios pensados para el estilo de vida contemporáneo.
           </p>
 
           <ul className="grid grid-cols-2 gap-3 mt-4">
             {[
               { title: "Dormitorios", desc: "2–3" },
-              { title: "Áreas", desc: "Terraza, BBQ, Lavandería" },
+              { title: "Áreas", desc: "AMPLIAS Y FUNCIONALES" },
               { title: "Acabados", desc: "Modernos" },
-              { title: "Entrega", desc: "En construcción" },
+              { title: "Entrega", desc: "Consultar disponibilidad" },
             ].map((item) => (
               <li
                 key={item.title}
@@ -85,11 +85,11 @@ export default function Description() {
           </ul>
 
           <ul className="space-y-1.5 mt-5 text-gray-700 text-[0.95rem]">
-            <li>✔ Sala comedor con iluminación natural</li>
-            <li>✔ Cocheras independientes</li>
-            <li>✔ Lavandería y tendal privado en azotea</li>
-            <li>✔ Cocina equipada con acabados de primera</li>
-            <li>✔ Balcón con vista al parque</li>
+            <li>✔ Sala comedor con excelente iluminación</li>
+            <li>✔ Cocina integrada con acabados modernos</li>
+            <li>✔ Espacios amplios y funcionales</li>
+            <li>✔ Diseño moderno y estético</li>
+            <li>✔ Ideal para inversión o vivienda propia</li>
           </ul>
 
           <div className="flex flex-wrap gap-4 mt-6">

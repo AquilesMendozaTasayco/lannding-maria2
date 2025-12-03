@@ -93,7 +93,9 @@ export default function VideosPromocionales() {
         </motion.div>
 
         <motion.div
-          key={currentVideo.id}
+          key={current}
+          initial="hidden"
+          animate="visible"
           variants={fadeIn}
           className="flex-1 text-left"
         >
@@ -117,36 +119,16 @@ export default function VideosPromocionales() {
           </p>
 
           <div className="flex items-center gap-4 mb-10">
-            <a
-              href="https://www.facebook.com/rodenconstructores"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[#1877F2] hover:scale-110 transition-transform text-2xl"
-            >
+            <a href="https://www.facebook.com/rodenconstructores" target="_blank" rel="noopener noreferrer" className="text-[#1877F2] hover:scale-110 transition-transform text-2xl">
               <FaFacebookF />
             </a>
-            <a
-              href="https://www.instagram.com/rodenconstructores/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[#E4405F] hover:scale-110 transition-transform text-2xl"
-            >
+            <a href="https://www.instagram.com/rodenconstructores/" target="_blank" rel="noopener noreferrer" className="text-[#E4405F] hover:scale-110 transition-transform text-2xl">
               <FaInstagram />
             </a>
-            <a
-              href="https://www.youtube.com/@rodenconstructores6797"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[#FF0000] hover:scale-110 transition-transform text-2xl"
-            >
+            <a href="https://www.youtube.com/@rodenconstructores6797" target="_blank" rel="noopener noreferrer" className="text-[#FF0000] hover:scale-110 transition-transform text-2xl">
               <FaYoutube />
             </a>
-            <a
-              href="https://wa.me/51956223460"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[#25D366] hover:scale-110 transition-transform text-2xl"
-            >
+            <a href="https://wa.me/51956223460" target="_blank" rel="noopener noreferrer" className="text-[#25D366] hover:scale-110 transition-transform text-2xl">
               <FaWhatsapp />
             </a>
           </div>
@@ -155,6 +137,7 @@ export default function VideosPromocionales() {
             <HiPlayCircle className="text-[#00A651] text-3xl" />
             {currentVideo.title}
           </h3>
+
           <p className="text-gray-700 leading-relaxed text-base mb-8">
             {currentVideo.description}
           </p>
