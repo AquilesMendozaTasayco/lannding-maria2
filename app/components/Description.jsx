@@ -37,7 +37,6 @@ export default function Description() {
       className="relative py-16 px-6 md:px-12 lg:px-24 bg-white"
     >
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-10">
-        {/* === TEXTO === */}
         <motion.div
           variants={fadeIn}
           className="flex-1 text-left flex flex-col justify-center space-y-5"
