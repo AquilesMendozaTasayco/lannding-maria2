@@ -8,10 +8,12 @@ import Galeria from "./components/Galeria";
 import AvancesObra from "./components/AvancesObra";
 import VideosPromocionales from "./components/VideosPromocionales";
 import BotonWhatsApp from "./components/BotonWhatsApp";
+import BotonVolver from "./components/BotonVolver";
 
 export default function Home() {
   return (
     <>
+      <BotonVolver />
       <Hero />
       <Description />
       <Features />
