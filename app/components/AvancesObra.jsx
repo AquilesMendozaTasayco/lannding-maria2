@@ -45,7 +45,7 @@ export default function AvancesObra() {
         </motion.div>
 
         <h3 className="text-2xl font-bold text-[#004A99] mb-2">
-          ¡Pronto iniciaremos obras!
+          ¡Pronto iniciaremos obra!
         </h3>
         <p className="text-gray-600 max-w-md">
           Estamos preparando el inicio de construcción de{" "}
