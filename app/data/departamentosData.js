@@ -56,7 +56,7 @@ export const unidades = [
   { id: 8, numero: "1001", nivel: 10, area: 99.27, dormitorios: 3, banos: 3, estado: "disponible", categoriaId: "familiar-100" },
 
   { id: 9, numero: "402", nivel: 4, area: 98.20, dormitorios: 3, banos: 2, estado: "vendido", categoriaId: "compacto" },
-  { id: 10, numero: "502", nivel: 5, area: 98.17, dormitorios: 3, banos: 2, estado: "disponible", categoriaId: "compacto" },
+  { id: 10, numero: "502", nivel: 5, area: 98.17, dormitorios: 3, banos: 2, estado: "vendido", categoriaId: "compacto" },
   { id: 11, numero: "602", nivel: 6, area: 98.88, dormitorios: 3, banos: 2, estado: "disponible", categoriaId: "compacto" },
   { id: 12, numero: "702", nivel: 7, area: 98.22, dormitorios: 3, banos: 2, estado: "disponible", categoriaId: "compacto" },
 
