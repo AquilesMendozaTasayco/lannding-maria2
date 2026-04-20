@@ -93,7 +93,7 @@ export default function Description() {
 
           <div className="flex flex-wrap gap-4 mt-6">
             <a
-              href="/BROCHURE-MARIA-AUXILIADORA-II.pdf"
+              href="/brochure-ma2.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-[#004A99] text-white font-semibold px-6 py-3 rounded-md shadow-md hover:bg-[#003B7D] transition-all duration-300"
