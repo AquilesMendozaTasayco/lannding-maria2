@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState, useMemo } from "react";
-import Image from "next/image";
 import { motion } from "framer-motion";
 import { HiHomeModern } from "react-icons/hi2";
 
@@ -123,13 +122,11 @@ export default function Description() {
               transition={{ duration: 0.8, ease: "easeOut" }}
               className="absolute inset-0"
             >
-              <Image
+              <img
                 src={s.src}
                 alt={`Render ${i + 1}`}
-                fill
-                sizes="(max-width: 768px) 100vw, 50vw"
-                className="object-cover rounded-2xl select-none"
-                priority={i === 0}
+                loading={i === 0 ? "eager" : "lazy"}
+                className="absolute inset-0 w-full h-full object-cover rounded-2xl select-none"
               />
             </motion.div>
           ))}

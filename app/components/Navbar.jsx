@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
 import { HiOutlineMenu, HiX } from "react-icons/hi";
 
 export default function Navbar() {
@@ -43,15 +42,12 @@ export default function Navbar() {
           : "bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
-        <a href="#inicio" className="flex items-center gap-2">
-          <Image
+      <div className="max-w-7xl mx-auto flex justify-between items-center px-4 md:px-6 py-3 md:py-4">
+        <a href="#inicio" className="flex items-center gap-2 shrink-0">
+          <img
             src="/logo-maria-aux.webp"
             alt="Logo María Auxiliadora II"
-            width={150}
-            height={45}
-            priority
-            className="select-none"
+            className="h-9 md:h-11 lg:h-12 w-auto select-none"
           />
         </a>
 
@@ -82,7 +78,8 @@ export default function Navbar() {
 
         <button
           onClick={() => setMenuOpen(!menuOpen)}
-          className="md:hidden text-white focus:outline-none"
+          className="md:hidden text-white focus:outline-none shrink-0 ml-2"
+          aria-label="Abrir menú"
         >
           {menuOpen ? <HiX size={26} /> : <HiOutlineMenu size={26} />}
         </button>

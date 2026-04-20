@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { galeriaImages } from "../data/galeriaData";
@@ -48,11 +47,10 @@ export default function Galeria() {
             onClick={() => setSelected(img.src)}
             className="relative cursor-pointer overflow-hidden rounded-xl shadow-md hover:shadow-lg transition-all duration-200 group"
           >
-            <Image
+            <img
               src={img.src}
               alt={img.alt}
-              width={500}
-              height={350}
+              loading="lazy"
               className="object-cover w-full h-64"
             />
             <div className="absolute inset-0 bg-[#004A99]/0 group-hover:bg-[#004A99]/60 flex flex-col items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-all duration-300">
@@ -80,12 +78,11 @@ export default function Galeria() {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.95, opacity: 0 }}
               transition={{ duration: 0.35, ease: "easeOut" }}
+              onClick={(e) => e.stopPropagation()}
             >
-              <Image
+              <img
                 src={selected}
                 alt="Vista ampliada"
-                width={1600}
-                height={1000}
                 className="w-full h-auto object-contain rounded-lg"
               />
               <button

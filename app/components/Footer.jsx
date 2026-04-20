@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import {
   HiOutlinePhone,
   HiOutlineMapPin,
@@ -19,11 +18,10 @@ export default function Footer() {
         
         <div className="space-y-5">
           <div className="relative w-48 h-16">
-            <Image
+            <img
               src="/logo-maria-aux.webp"
               alt="Residencial María Auxiliadora II"
-              fill
-              className="object-contain"
+              className="absolute inset-0 w-full h-full object-contain"
             />
           </div>
           <p className="text-sm text-gray-200 leading-relaxed mt-2">
