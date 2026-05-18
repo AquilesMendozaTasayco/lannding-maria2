@@ -45,14 +45,14 @@ export default function AvancesObra() {
         </motion.div>
 
         <h3 className="text-2xl font-bold text-[#004A99] mb-2">
-          ¡Pronto iniciaremos obra!
+          ¡Ya iniciamos obra!
         </h3>
         <p className="text-gray-600 max-w-md">
-          Estamos preparando el inicio de construcción de{" "}
+          La construcción de{" "}
           <span className="font-semibold text-[#00A651]">
             Residencial María Auxiliadora II
-          </span>
-          . Muy pronto compartiremos los avances y actualizaciones del proyecto.
+          </span>{" "}
+          ya está en marcha. Pronto compartiremos los avances y actualizaciones del proyecto.
         </p>
       </motion.div>
     </motion.section>
