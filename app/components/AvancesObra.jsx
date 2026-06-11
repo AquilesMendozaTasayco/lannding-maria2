@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { HiOutlineBuildingOffice2, HiOutlineClock } from "react-icons/hi2";
 
 export default function AvancesObra() {
   const fadeIn = {
@@ -33,27 +32,42 @@ export default function AvancesObra() {
 
       <motion.div
         variants={fadeIn}
-        className="max-w-xl mx-auto bg-[#F5F7FA] rounded-2xl p-10 flex flex-col items-center justify-center shadow-sm"
+        className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6"
       >
-        <motion.div
-          variants={fadeIn}
-          transition={{ duration: 0.4, delay: 0.1 }}
-          className="flex items-center justify-center mb-4 text-[#004A99]"
-        >
-          <HiOutlineBuildingOffice2 className="text-5xl mr-2" />
-          <HiOutlineClock className="text-4xl text-[#00A651]" />
-        </motion.div>
-
-        <h3 className="text-2xl font-bold text-[#004A99] mb-2">
-          ¡Ya iniciamos obra!
-        </h3>
-        <p className="text-gray-600 max-w-md">
-          La construcción de{" "}
-          <span className="font-semibold text-[#00A651]">
-            Residencial María Auxiliadora II
-          </span>{" "}
-          ya está en marcha. Pronto compartiremos los avances y actualizaciones del proyecto.
-        </p>
+        <div className="bg-white rounded-2xl p-1.5 shadow-lg border-2 border-[#004A99]/20 hover:border-[#004A99]/50 transition-colors duration-300">
+          <div className="relative w-full" style={{ paddingBottom: "177.78%" }}>
+            <iframe
+              className="absolute top-0 left-0 w-full h-full rounded-xl"
+              src="https://www.youtube.com/embed/AlvnrS0RfdU"
+              title="Avance de obra - Reciente"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
+          <div className="flex items-center justify-center gap-2 mt-3 mb-2">
+            <span className="w-2 h-2 rounded-full bg-[#00A651] animate-pulse" />
+            <p className="text-sm font-bold text-[#004A99] tracking-wide uppercase">
+              Avance reciente
+            </p>
+          </div>
+        </div>
+        <div className="bg-white rounded-2xl p-1.5 shadow-lg border-2 border-[#00A651]/20 hover:border-[#00A651]/50 transition-colors duration-300">
+          <div className="relative w-full" style={{ paddingBottom: "177.78%" }}>
+            <iframe
+              className="absolute top-0 left-0 w-full h-full rounded-xl"
+              src="https://www.youtube.com/embed/A-4v2kw0wus"
+              title="Avance de obra - Anterior"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
+          <div className="flex items-center justify-center gap-2 mt-3 mb-2">
+            <span className="w-2 h-2 rounded-full bg-[#004A99]" />
+            <p className="text-sm font-bold text-[#00A651] tracking-wide uppercase">
+              Avance anterior
+            </p>
+          </div>
+        </div>
       </motion.div>
     </motion.section>
   );

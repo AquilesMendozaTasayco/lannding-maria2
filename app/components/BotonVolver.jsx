@@ -7,7 +7,7 @@ export default function BotonVolver() {
     <Link
       href="https://www.roden.pe/"
       className="
-        fixed top-6 left-6 md:left-6 right-6 md:right-auto z-50
+        fixed top-6 left-6 md:left-6 right-6 md:right-auto z-40
         flex items-center gap-2
         bg-white text-[#075fa5]
         font-bold px-4 py-2

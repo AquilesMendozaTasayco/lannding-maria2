@@ -7,7 +7,7 @@ import { HiOutlineBuildingOffice2 } from "react-icons/hi2";
 import CarruselPlano from "./CarruselPlano";
 
 export default function Departamentos() {
-  const [categoriaActiva, setCategoriaActiva] = useState("familiar-127");
+  const [categoriaActiva, setCategoriaActiva] = useState("familiar-301");
   const [filtroEstado, setFiltroEstado] = useState("todos");
 
   const unidadesFiltradas = useMemo(() => {
