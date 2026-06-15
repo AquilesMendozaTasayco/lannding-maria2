@@ -3,7 +3,7 @@
 import { useEffect, useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { videosData } from "../data/videosData";
-import { HiPlayCircle } from "react-icons/hi2";
+import { HiPlayCircle, HiChevronLeft, HiChevronRight } from "react-icons/hi2";
 import { FaFacebookF, FaInstagram, FaYoutube, FaWhatsapp } from "react-icons/fa";
 
 export default function VideosPromocionales() {
@@ -34,12 +34,20 @@ export default function VideosPromocionales() {
     return () => section && observer.unobserve(section);
   }, []);
 
+  const prevVideo = () => {
+    setCurrent((prev) => (prev === 0 ? videosData.length - 1 : prev - 1));
+  };
+
+  const nextVideo = () => {
+    setCurrent((prev) => (prev + 1) % videosData.length);
+  };
+
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
 
     const handleEnded = () => {
-      setCurrent((prev) => (prev + 1) % videosData.length);
+      nextVideo();
     };
 
     video.addEventListener("ended", handleEnded);
@@ -133,10 +141,28 @@ export default function VideosPromocionales() {
             </a>
           </div>
 
-          <h3 className="text-2xl font-bold text-[#004A99] flex items-center gap-2 mb-2">
-            <HiPlayCircle className="text-[#00A651] text-3xl" />
-            {currentVideo.title}
-          </h3>
+          <div className="flex items-center justify-between mb-2">
+            <h3 className="text-2xl font-bold text-[#004A99] flex items-center gap-2">
+              <HiPlayCircle className="text-[#00A651] text-3xl" />
+              {currentVideo.title}
+            </h3>
+            <div className="flex items-center gap-2">
+              <button
+                onClick={prevVideo}
+                className="w-10 h-10 flex items-center justify-center rounded-full bg-[#004A99] hover:bg-[#003377] text-white shadow-md transition"
+                aria-label="Video anterior"
+              >
+                <HiChevronLeft className="text-xl" />
+              </button>
+              <button
+                onClick={nextVideo}
+                className="w-10 h-10 flex items-center justify-center rounded-full bg-[#004A99] hover:bg-[#003377] text-white shadow-md transition"
+                aria-label="Video siguiente"
+              >
+                <HiChevronRight className="text-xl" />
+              </button>
+            </div>
+          </div>
 
           <p className="text-gray-700 leading-relaxed text-base mb-8">
             {currentVideo.description}
