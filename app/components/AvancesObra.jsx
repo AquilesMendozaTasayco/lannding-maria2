@@ -42,7 +42,7 @@ export default function AvancesObra() {
         ].map((v, i) => (
           <div
             key={v.id}
-            className="bg-white rounded-2xl p-1 shadow-lg border-2 transition-colors duration-300 w-[140px]"
+            className="bg-white rounded-2xl p-1 shadow-lg border-2 transition-colors duration-300 w-[180px]"
             style={{ borderColor: v.pulse ? "#00A651" : "#004A9920" }}
           >
             <div className="relative w-full" style={{ paddingBottom: "177.78%" }}>

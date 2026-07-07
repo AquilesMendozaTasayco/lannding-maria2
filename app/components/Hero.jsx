@@ -4,8 +4,8 @@ import { motion } from "framer-motion";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
 
 export default function Hero() {
-  const scrollToDepartamentos = () => {
-    const element = document.getElementById("departamentos");
+  const scrollToSeccion = (id) => {
+    const element = document.getElementById(id);
     element?.scrollIntoView({ behavior: "smooth" });
   };
 
@@ -92,12 +92,12 @@ export default function Hero() {
           </motion.a>
           
           <motion.button
-            onClick={scrollToDepartamentos}
+            onClick={() => scrollToSeccion("avances")}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/30 text-white font-medium px-6 py-4 rounded-xl transition-all duration-300"
           >
-            Más información
+            Ver avances de obra
           </motion.button>
         </motion.div>
 
@@ -136,7 +136,7 @@ export default function Hero() {
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 2, repeat: Infinity }}
           className="cursor-pointer"
-          onClick={scrollToDepartamentos}
+          onClick={() => scrollToSeccion("departamentos")}
         >
           <ChevronDownIcon className="w-8 h-8 text-white/70 hover:text-white transition-colors drop-shadow-[0_2px_6px_rgba(0,0,0,0.6)]" />
         </motion.div>
