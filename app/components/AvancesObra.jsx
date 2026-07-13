@@ -9,7 +9,7 @@ const videos = [
   { id: "NH0-5FJDISU", title: "Vaciado de Placas 1er Nivel", label: "4to avance", pulse: false },
   { id: "bDS9PU3fe0M", title: "Vaciado de Aligerado", label: "3er avance", pulse: false },
   { id: "A-4v2kw0wus", title: "Vaciado de Cisterna", label: "2do avance", pulse: false },
-  { id: "AlvnrS0RfdU", title: "Vaciado de Concreto", label: "1er avance", pulse: false },
+  { id: "AlvnrS0RfdU", title: "Inicio de Obra", label: "1er avance", pulse: false },
 ];
 
 export default function AvancesObra() {

@@ -96,8 +96,10 @@ export default function Hero() {
             whileTap={{ scale: 0.95 }}
             className="inline-flex items-center gap-2 bg-white/10 hover:bg-[#00A651] backdrop-blur-sm border border-white/30 hover:border-[#00A651] text-white font-medium px-6 py-4 rounded-xl transition-all duration-300"
           >
-            <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 640 512">
-              <path d="M288 32c0-17.7 14.3-32 32-32s32 14.3 32 32V64h64c35.3 0 64 28.7 64 64v32H448 192v-6.5 0V128c0-35.3 28.7-64 64-64h64V32zm-48 80H208c-8.8 0-16 7.2-16 16v44c-31.7 1.9-58.2 23.7-67.5 64H16c-8.8 0-16 7.2-16 16s7.2 16 16 16H128c0 17.7 14.3 32 32 32H480c17.7 0 32-14.3 32-32H624c8.8 0 16-7.2 16-16s-7.2-16-16-16H515.5c-9.3-40.3-35.8-62.1-67.5-64V128c0-8.8-7.2-16-16-16H448 400 240 192zm-32 192c-26.5 0-48 21.5-48 48v32c0 26.5 21.5 48 48 48s48-21.5 48-48V352c0-26.5-21.5-48-48-48zm224 0c-26.5 0-48 21.5-48 48v32c0 26.5 21.5 48 48 48s48-21.5 48-48V352c0-26.5-21.5-48-48-48z"/>
+            <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 3C8.5 3 5.5 5.5 4.5 9c-.3 1.2-.5 2.5-.5 4v1.5h16V13c0-1.5-.2-2.8-.5-4C18.5 5.5 15.5 3 12 3z"/>
+              <rect x="2" y="15" width="20" height="1.5" rx=".5"/>
+              <rect x="4" y="16.5" width="16" height="3" rx=".5"/>
             </svg>
             Ver avances de obra
           </motion.button>
