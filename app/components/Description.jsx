@@ -70,7 +70,6 @@ export default function Description() {
               { title: "Dormitorios", desc: "2–3" },
               { title: "Áreas", desc: "AMPLIAS Y FUNCIONALES" },
               { title: "Acabados", desc: "Modernos" },
-              { title: "Entrega", desc: "Consultar disponibilidad" },
             ].map((item) => (
               <li
                 key={item.title}

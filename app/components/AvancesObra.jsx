@@ -8,7 +8,7 @@ const videos = [
   { id: "I3IFlOfdHXw", title: "Llegamos al 1er nivel", label: "Último avance", pulse: true },
   { id: "NH0-5FJDISU", title: "Vaciado de Placas 1er Nivel", label: "4to avance", pulse: false },
   { id: "bDS9PU3fe0M", title: "Semisótano", label: "3er avance", pulse: false },
-  { id: "A-4v2kw0wus", title: "Avances de Obra", label: "2do avance", pulse: false },
+  { id: "A-4v2kw0wus", title: "Vaciado de Cisterna", label: "2do avance", pulse: false },
   { id: "AlvnrS0RfdU", title: "Inicio de Obra", label: "1er avance", pulse: false },
 ];
 
@@ -48,13 +48,13 @@ export default function AvancesObra() {
 
       <motion.div
         variants={fadeIn}
-        className="max-w-5xl mx-auto flex justify-center gap-3"
+        className="max-w-[580px] mx-auto flex flex-wrap justify-center gap-3"
       >
         {videos.map((v) => (
           <div
             key={v.id}
             onClick={() => setModalVideo(v.id)}
-            className="bg-white rounded-2xl p-1 shadow-lg border-2 transition-all duration-300 w-[160px] cursor-pointer hover:scale-105"
+            className="bg-white rounded-2xl p-1 shadow-lg border-2 transition-all duration-300 w-[170px] cursor-pointer hover:scale-105"
             style={{ borderColor: v.pulse ? "#00A651" : "#004A9920" }}
           >
             <div className="relative w-full" style={{ paddingBottom: "177.78%" }}>

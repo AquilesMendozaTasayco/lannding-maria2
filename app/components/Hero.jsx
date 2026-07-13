@@ -111,7 +111,7 @@ export default function Hero() {
         >
           {[
             { value: "2 a 3", label: "dormitorios" },
-            { value: "Acabados", label: "de primera" },
+            { value: "Cocina", label: "equipada" },
             { value: "Zona de tendales", label: "independientes" }
           ].map((item, index) => (
             <motion.div
