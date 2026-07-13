@@ -32,24 +32,25 @@ export default function AvancesObra() {
 
       <motion.div
         variants={fadeIn}
-        className="max-w-4xl mx-auto flex justify-center gap-3"
+        className="max-w-5xl mx-auto flex justify-center gap-3"
       >
         {[
-          { id: "A-4v2kw0wus", label: "1er avance", pulse: false },
-          { id: "AlvnrS0RfdU", label: "2do avance", pulse: false },
-          { id: "bDS9PU3fe0M", label: "3er avance", pulse: false },
-          { id: "NH0-5FJDISU", label: "Avance reciente", pulse: true },
-        ].map((v, i) => (
+          { id: "I3IFlOfdHXw", title: "Llegamos al 1er nivel", label: "Último avance", pulse: true },
+          { id: "NH0-5FJDISU", title: "Vaciado de Placas 1er Nivel", label: "4to avance", pulse: false },
+          { id: "bDS9PU3fe0M", title: "Semisótano", label: "3er avance", pulse: false },
+          { id: "A-4v2kw0wus", title: "Avances de Obra", label: "2do avance", pulse: false },
+          { id: "AlvnrS0RfdU", title: "Inicio de Obra", label: "1er avance", pulse: false },
+        ].map((v) => (
           <div
             key={v.id}
-            className="bg-white rounded-2xl p-1 shadow-lg border-2 transition-colors duration-300 w-[180px]"
+            className="bg-white rounded-2xl p-1 shadow-lg border-2 transition-colors duration-300 w-[160px]"
             style={{ borderColor: v.pulse ? "#00A651" : "#004A9920" }}
           >
             <div className="relative w-full" style={{ paddingBottom: "177.78%" }}>
               <iframe
                 className="absolute top-0 left-0 w-full h-full rounded-xl"
                 src={`https://www.youtube.com/embed/${v.id}`}
-                title={`Avance de obra - ${v.label}`}
+                title={v.title}
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
               />
