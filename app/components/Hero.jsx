@@ -47,18 +47,17 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 1 }}
-          className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight drop-shadow-[0_2px_10px_rgba(0,0,0,0.6)]"
+          className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight drop-shadow-[0_2px_10px_rgba(0,0,0,0.6)]"
         >
-          Vive el{" "}
+          Tu nuevo estilo de vida{" "}
           <motion.span
             initial={{ opacity: 0, scale: 1.1 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.8, duration: 0.8 }}
             className="text-[#00A651] bg-gradient-to-r from-[#00A651] to-[#00C853] bg-clip-text text-transparent drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]"
           >
-            nuevo estilo
-          </motion.span>{" "}
-          de vida
+            en la Urb El Recreo
+          </motion.span>
         </motion.h1>
 
         <motion.p
@@ -67,7 +66,7 @@ export default function Hero() {
           transition={{ delay: 0.7, duration: 0.8 }}
           className="text-xl md:text-2xl font-light mb-12 max-w-3xl mx-auto leading-relaxed text-gray-200 drop-shadow-[0_2px_6px_rgba(0,0,0,0.6)]"
         >
-          Residencial María Auxiliadora II — Donde el confort y la elegancia se encuentran
+          Residencial María Auxiliadora II
         </motion.p>
 
         <motion.div
@@ -83,7 +82,7 @@ export default function Hero() {
               boxShadow: "0 10px 30px -10px rgba(0, 166, 81, 0.5)"
             }}
             whileTap={{ scale: 0.95 }}
-            className="inline-flex items-center gap-3 bg-gradient-to-r from-[#00A651] to-[#00C853] hover:from-[#00954f] hover:to-[#00A651] text-white font-semibold px-10 py-4 rounded-xl transition-all duration-300 shadow-2xl text-lg"
+            className="inline-flex items-center gap-3 bg-white/10 hover:bg-[#00A651] backdrop-blur-sm border border-white/30 hover:border-[#00A651] text-white font-semibold px-10 py-4 rounded-xl transition-all duration-300 text-lg"
           >
             Ver departamentos disponibles
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -95,8 +94,11 @@ export default function Hero() {
             onClick={() => scrollToSeccion("avances")}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/30 text-white font-medium px-6 py-4 rounded-xl transition-all duration-300"
+            className="inline-flex items-center gap-2 bg-white/10 hover:bg-[#00A651] backdrop-blur-sm border border-white/30 hover:border-[#00A651] text-white font-medium px-6 py-4 rounded-xl transition-all duration-300"
           >
+            <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 640 512">
+              <path d="M288 32c0-17.7 14.3-32 32-32s32 14.3 32 32V64h64c35.3 0 64 28.7 64 64v32H448 192v-6.5 0V128c0-35.3 28.7-64 64-64h64V32zm-48 80H208c-8.8 0-16 7.2-16 16v44c-31.7 1.9-58.2 23.7-67.5 64H16c-8.8 0-16 7.2-16 16s7.2 16 16 16H128c0 17.7 14.3 32 32 32H480c17.7 0 32-14.3 32-32H624c8.8 0 16-7.2 16-16s-7.2-16-16-16H515.5c-9.3-40.3-35.8-62.1-67.5-64V128c0-8.8-7.2-16-16-16H448 400 240 192zm-32 192c-26.5 0-48 21.5-48 48v32c0 26.5 21.5 48 48 48s48-21.5 48-48V352c0-26.5-21.5-48-48-48zm224 0c-26.5 0-48 21.5-48 48v32c0 26.5 21.5 48 48 48s48-21.5 48-48V352c0-26.5-21.5-48-48-48z"/>
+            </svg>
             Ver avances de obra
           </motion.button>
         </motion.div>
@@ -108,9 +110,9 @@ export default function Hero() {
           className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16 pt-8 border-t border-white/20"
         >
           {[
-            { label: "Ubicación", value: "Estratégica" },
-            { label: "Departamentos", value: "Desde 2 dorm." },
-            { label: "Entrega", value: "-" }
+            { value: "2 a 3", label: "dormitorios" },
+            { value: "Acabados", label: "de primera" },
+            { value: "Zona de tendales", label: "independientes" }
           ].map((item, index) => (
             <motion.div
               key={item.label}

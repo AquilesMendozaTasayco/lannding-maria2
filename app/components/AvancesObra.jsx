@@ -1,8 +1,20 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { HiXMark } from "react-icons/hi2";
+
+const videos = [
+  { id: "I3IFlOfdHXw", title: "Llegamos al 1er nivel", label: "Último avance", pulse: true },
+  { id: "NH0-5FJDISU", title: "Vaciado de Placas 1er Nivel", label: "4to avance", pulse: false },
+  { id: "bDS9PU3fe0M", title: "Semisótano", label: "3er avance", pulse: false },
+  { id: "A-4v2kw0wus", title: "Avances de Obra", label: "2do avance", pulse: false },
+  { id: "AlvnrS0RfdU", title: "Inicio de Obra", label: "1er avance", pulse: false },
+];
 
 export default function AvancesObra() {
+  const [modalVideo, setModalVideo] = useState(null);
+
   const fadeIn = {
     hidden: { opacity: 0, y: 25 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } },
@@ -24,9 +36,13 @@ export default function AvancesObra() {
           Seguimiento del proyecto{" "}
           <span className="text-[#00A651]">María Auxiliadora II</span>
         </h2>
-        <p className="text-gray-600 leading-relaxed">
+        <p className="text-gray-600">
           Conoce el progreso del proyecto y mantente al tanto del desarrollo de
           tu futuro hogar.
+        </p>
+        <p className="text-[#004A99] font-semibold mt-2">
+          Departamentos desde <span className="text-[#00A651]">82.17 m²</span> hasta{" "}
+          <span className="text-[#00A651]">120.40 m²</span>
         </p>
       </motion.div>
 
@@ -34,36 +50,71 @@ export default function AvancesObra() {
         variants={fadeIn}
         className="max-w-5xl mx-auto flex justify-center gap-3"
       >
-        {[
-          { id: "I3IFlOfdHXw", title: "Llegamos al 1er nivel", label: "Último avance", pulse: true },
-          { id: "NH0-5FJDISU", title: "Vaciado de Placas 1er Nivel", label: "4to avance", pulse: false },
-          { id: "bDS9PU3fe0M", title: "Semisótano", label: "3er avance", pulse: false },
-          { id: "A-4v2kw0wus", title: "Avances de Obra", label: "2do avance", pulse: false },
-          { id: "AlvnrS0RfdU", title: "Inicio de Obra", label: "1er avance", pulse: false },
-        ].map((v) => (
+        {videos.map((v) => (
           <div
             key={v.id}
-            className="bg-white rounded-2xl p-1 shadow-lg border-2 transition-colors duration-300 w-[160px]"
+            onClick={() => setModalVideo(v.id)}
+            className="bg-white rounded-2xl p-1 shadow-lg border-2 transition-all duration-300 w-[160px] cursor-pointer hover:scale-105"
             style={{ borderColor: v.pulse ? "#00A651" : "#004A9920" }}
           >
             <div className="relative w-full" style={{ paddingBottom: "177.78%" }}>
-              <iframe
-                className="absolute top-0 left-0 w-full h-full rounded-xl"
-                src={`https://www.youtube.com/embed/${v.id}`}
-                title={v.title}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
+              <div
+                className="absolute inset-0 rounded-xl bg-cover bg-center"
+                style={{ backgroundImage: `url(https://img.youtube.com/vi/${v.id}/hqdefault.jpg)` }}
               />
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="w-10 h-10 rounded-full bg-white/80 flex items-center justify-center">
+                  <svg className="w-5 h-5 text-[#004A99] ml-0.5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M8 5v14l11-7z"/>
+                  </svg>
+                </div>
+              </div>
             </div>
-            <div className="flex items-center justify-center gap-2 mt-2 mb-1">
-              <span className={`w-2 h-2 rounded-full ${v.pulse ? "bg-[#00A651] animate-pulse" : "bg-[#004A99]"}`} />
-              <p className={`text-xs font-bold tracking-wide uppercase ${v.pulse ? "text-[#004A99]" : "text-[#00A651]"}`}>
-                {v.label}
-              </p>
+            <div className="mt-2 mb-1 px-1">
+              <p className="text-xs font-bold text-[#004A99] truncate">{v.title}</p>
+              <div className="flex items-center justify-center gap-2">
+                <span className={`w-2 h-2 rounded-full ${v.pulse ? "bg-[#00A651] animate-pulse" : "bg-[#004A99]"}`} />
+                <p className={`text-[10px] font-bold tracking-wide uppercase ${v.pulse ? "text-[#004A99]" : "text-[#00A651]"}`}>
+                  {v.label}
+                </p>
+              </div>
             </div>
           </div>
         ))}
       </motion.div>
+
+      <AnimatePresence>
+        {modalVideo && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setModalVideo(null)}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4"
+          >
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              onClick={(e) => e.stopPropagation()}
+              className="relative w-full max-w-3xl aspect-video bg-black rounded-2xl overflow-hidden"
+            >
+              <button
+                onClick={() => setModalVideo(null)}
+                className="absolute top-3 right-3 z-10 w-10 h-10 rounded-full bg-black/60 text-white flex items-center justify-center hover:bg-black/80 transition"
+              >
+                <HiXMark className="text-xl" />
+              </button>
+              <iframe
+                className="w-full h-full"
+                src={`https://www.youtube.com/embed/${modalVideo}?autoplay=1&rel=0`}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.section>
   );
 }
