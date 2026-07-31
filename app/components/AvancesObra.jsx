@@ -5,7 +5,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { HiXMark } from "react-icons/hi2";
 
 const videos = [
-  { id: "HgcCUY8msFI", title: "Columnas y Placas", label: "Último avance", pulse: true },
+  { id: "Wf9Y1FmmPYA", title: "Vaciado de Columnas Nivel 3", label: "Último avance", pulse: true },
+  { id: "HgcCUY8msFI", title: "Columnas y Placas", label: "6to avance", pulse: false },
   { id: "I3IFlOfdHXw", title: "Llegamos al 1er nivel", label: "5to avance", pulse: false },
   { id: "NH0-5FJDISU", title: "Vaciado de Placas 1er Nivel", label: "4to avance", pulse: false },
   { id: "bDS9PU3fe0M", title: "Vaciado de Aligerado", label: "3er avance", pulse: false },
