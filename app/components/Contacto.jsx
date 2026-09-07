@@ -36,28 +36,36 @@ export default function Contacto() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
+      const data = await res.json().catch(() => null);
       if (res.ok) {
+        e.target.reset();
+        setFormData({ nombre: "", correo: "", telefono: "", mensaje: "" });
         Swal.fire({
           icon: "success",
           title: "¡Mensaje enviado!",
-          text: "Tu mensaje fue enviado con éxito. Pronto nos pondremos en contacto contigo.",
+          text: data?.body || "Tu mensaje fue enviado con éxito. Pronto nos pondremos en contacto contigo.",
           confirmButtonColor: "#00A651",
           background: "#F9FAFB",
         });
-        setFormData({ nombre: "", correo: "", telefono: "", mensaje: "" });
       } else {
+        const errorMsg =
+          data?.body ||
+          data?.debug?.message ||
+          "Hubo un problema al enviar tu mensaje. Inténtalo nuevamente.";
         Swal.fire({
           icon: "error",
           title: "Error al enviar",
-          text: "Hubo un problema al enviar tu mensaje. Inténtalo nuevamente.",
+          text: errorMsg,
           confirmButtonColor: "#004A99",
         });
       }
-    } catch {
+    } catch (error) {
       Swal.fire({
         icon: "error",
         title: "Error inesperado",
-        text: "Ocurrió un error de conexión. Intenta nuevamente más tarde.",
+        text:
+          error?.message ||
+          "Ocurrió un error de conexión. Intenta nuevamente más tarde.",
         confirmButtonColor: "#004A99",
       });
     } finally {
@@ -100,6 +108,7 @@ export default function Contacto() {
             placeholder="Nombre completo *"
             value={formData.nombre}
             onChange={handleChange}
+            required
             className="w-full p-3 rounded-md border border-gray-300 text-gray-800 focus:outline-none focus:ring-2 focus:ring-[#00A651]"
           />
           <input
@@ -108,6 +117,7 @@ export default function Contacto() {
             placeholder="Correo electrónico *"
             value={formData.correo}
             onChange={handleChange}
+            required
             className="w-full p-3 rounded-md border border-gray-300 text-gray-800 focus:outline-none focus:ring-2 focus:ring-[#00A651]"
           />
           <input
@@ -123,6 +133,8 @@ export default function Contacto() {
             placeholder="Mensaje *"
             value={formData.mensaje}
             onChange={handleChange}
+            required
+            minLength={10}
             className="w-full p-3 rounded-md border border-gray-300 text-gray-800 h-32 focus:outline-none focus:ring-2 focus:ring-[#00A651]"
           ></textarea>
 
@@ -131,9 +143,9 @@ export default function Contacto() {
             disabled={loading}
             className={`${
               loading
-                ? "bg-[#00A651]/70 cursor-not-allowed"
+                ? "bg-[#00A651]/70 cursor-not-allowed opacity-60"
                 : "bg-[#004A99] hover:bg-[#003b7d]"
-            } text-white font-semibold py-3 px-6 rounded-md w-full transition-all duration-300 flex items-center justify-center gap-2`}
+            } text-white font-semibold py-3 px-6 rounded-md w-full transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-60`}
           >
             <HiEnvelope className="text-lg" />
             {loading ? "Enviando..." : "Enviar mensaje"}
