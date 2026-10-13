@@ -37,10 +37,14 @@ export default function Hero() {
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.3, duration: 0.6 }}
-          className="inline-flex items-center gap-2 bg-black/40 backdrop-blur-sm border border-white/20 px-4 py-2 rounded-full mb-8"
+          className="flex flex-wrap items-center justify-center gap-3 mb-8"
         >
-          <div className="w-2 h-2 bg-[#00A651] rounded-full animate-pulse"></div>
-          <span className="text-sm font-medium">Proyecto en venta</span>
+          <span className="inline-flex items-center bg-black/40 backdrop-blur-sm border border-white/20 px-4 py-2 rounded-full text-sm font-medium">
+            Proyecto en venta
+          </span>
+          <span className="inline-flex items-center bg-[#00A651]/90 backdrop-blur-sm border border-white/20 px-4 py-2 rounded-full text-sm font-semibold uppercase tracking-wide">
+            En construcción
+          </span>
         </motion.div>
 
         <motion.h1
@@ -60,49 +64,17 @@ export default function Hero() {
           </motion.span>
         </motion.h1>
 
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.7, duration: 0.8 }}
-          className="text-xl md:text-2xl font-light mb-12 max-w-3xl mx-auto leading-relaxed text-gray-200 drop-shadow-[0_2px_6px_rgba(0,0,0,0.6)]"
-        >
-          Residencial María Auxiliadora II
-        </motion.p>
-
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.9, duration: 0.6 }}
-          className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+          transition={{ delay: 0.7, duration: 0.8 }}
+          className="flex justify-center mb-12"
         >
-          <motion.a
-            href="#departamentos"
-            whileHover={{ 
-              scale: 1.05,
-              boxShadow: "0 10px 30px -10px rgba(0, 166, 81, 0.5)"
-            }}
-            whileTap={{ scale: 0.95 }}
-            className="inline-flex items-center gap-3 bg-white/10 hover:bg-[#00A651] backdrop-blur-sm border border-white/30 hover:border-[#00A651] text-white font-semibold px-10 py-4 rounded-xl transition-all duration-300 text-lg"
-          >
-            Ver departamentos disponibles
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-            </svg>
-          </motion.a>
-          
-          <motion.button
-            onClick={() => scrollToSeccion("avances")}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="inline-flex items-center gap-2 bg-white/10 hover:bg-[#00A651] backdrop-blur-sm border border-white/30 hover:border-[#00A651] text-white font-medium px-6 py-4 rounded-xl transition-all duration-300"
-          >
-            <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12 3C8.5 3 5.5 5.5 4.5 9c-.3 1.2-.5 2.5-.5 4v1.5h16V13c0-1.5-.2-2.8-.5-4C18.5 5.5 15.5 3 12 3z"/>
-              <rect x="2" y="15" width="20" height="1.5" rx=".5"/>
-              <rect x="4" y="16.5" width="16" height="3" rx=".5"/>
-            </svg>
-            Ver avances de obra
-          </motion.button>
+          <img
+            src="/logo-maria-aux.webp"
+            alt="Residencial María Auxiliadora II"
+            className="h-16 md:h-20 w-auto select-none drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]"
+          />
         </motion.div>
 
         <motion.div
